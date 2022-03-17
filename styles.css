@@ -161,7 +161,7 @@ main section styles
 }
 .media-scroller {
    --_subaccent-color: #111;
-   width: 100%;
+   /* width: 100%; */
    display: grid;
    grid-auto-flow: column;
    grid-auto-columns: 25%;
@@ -201,13 +201,6 @@ main section styles
 .media-element-title {
    color: var(--color-accent);
 }
-.media-scroller-controls {
-   position: absolute;
-   inset: 0;
-   z-index: 5;
-   font-size: 3em;
-   pointer-events: none;
-}
 .media-scroller-arrow {
    --_controls-subcolor: #b88517;
    padding: 0;
@@ -220,6 +213,9 @@ main section styles
    position: absolute;
    top: 50%;
    transform: translateY(-50%);
+   z-index: 5;
+
+   font-size: 2em;
 
    color: var(--color-accent);
    pointer-events: all;
@@ -230,8 +226,8 @@ main section styles
    color: var(--_controls-subcolor);
 }
 .media-scroller-arrow.right {
-   right: 5%;
+   right: 1rem;
 }
 .media-scroller-arrow.left {
-   left: 5%;
+   left: 1rem;
 }

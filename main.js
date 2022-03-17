@@ -31,10 +31,28 @@ changeSlide();
 
 // sections media scrollers code
 
-const mediaScrollerLeftBtn = document.querySelectorAll('.media-scroller-arrow.left');
-const mediaScrollerRightBtn = document.querySelectorAll('.media-scroller-arrow.right');
-const mediaScroller = document.querySelectorAll('.media-scroller');
+const mediaScrollerLeftBtn = document.querySelector('.media-scroller-arrow.left');
+const mediaScrollerRightBtn = document.querySelector('.media-scroller-arrow.right');
+const mediaScroller = document.querySelector('.media-scroller');
+const mediaElement = document.querySelector('.media-element');
 
+let mediaElementWidth = 0;
+let mediaScrollerWidth = 0;
+
+window.addEventListener('resize', getMediaElementWidth);
+
+function getMediaElementWidth() {
+   mediaElementWidth = mediaElement.offsetWidth;
+   return mediaElementWidth;
+}
+getMediaElementWidth();
+
+mediaScrollerLeftBtn.addEventListener('click', () => {
+   mediaScroller.scrollBy({ left: -mediaElementWidth * 2, behavior: 'smooth' });
+});
+mediaScrollerRightBtn.addEventListener('click', () => {
+   mediaScroller.scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
+});
 // Набросок для темплейта
 
 // const body = document.querySelector('body');
