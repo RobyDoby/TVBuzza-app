@@ -152,8 +152,8 @@ main section styles
    z-index: 2;
 }
 
-/* top rated section */
-.top-rated {
+/* scroller sections styles */
+.scroller-section {
    width: 100%;
    height: 100%;
    background: var(--main-color-dark);
@@ -187,6 +187,7 @@ main section styles
    background: var(--_subaccent-color);
    border-radius: 0.5rem;
 }
+
 .media-element > img {
    width: 100%;
    aspect-ratio: 2 / 3;

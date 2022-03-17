@@ -53,6 +53,10 @@ mediaScrollerLeftBtn.addEventListener('click', () => {
 mediaScrollerRightBtn.addEventListener('click', () => {
    mediaScroller.scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
 });
+
+// Подумать как сделать единый медиа скроллер код для всех скроллеров на странице
+// использовать дата атрибуты? или поиск по родителю
+
 // Набросок для темплейта
 
 // const body = document.querySelector('body');
