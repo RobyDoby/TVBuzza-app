@@ -1,0 +1,237 @@
+/* 
+General styles
+*/
+:root {
+   --fz-main-title: 3rem;
+   --fz-subtitles: 2rem;
+   --fz-content: 1.25rem;
+
+   --main-color: #fff;
+   --main-color-dark: #000;
+   --color-accent: #ffb71c;
+
+   --scroller-gap: 1em;
+}
+
+body,
+html {
+   min-height: 100vh;
+   width: 100%;
+   font-family: Poppins, sans-serif;
+   color: var(--main-color);
+}
+body {
+   font-size: var(--fz-content);
+}
+.wrapper {
+   width: 80%;
+   margin: 0 auto;
+   height: 100%;
+   position: relative;
+}
+.section-title {
+   font-size: var(--fz-subtitles);
+   color: var(--color-accent);
+   margin-bottom: 2rem;
+}
+/* .section-title.inverted {
+   color: var(--color-accent);
+} */
+section {
+   padding-block: 2rem;
+}
+
+/* 
+Header section styles
+*/
+/* nav */
+nav {
+   width: 100%;
+   background: var(--main-color-dark);
+   padding: 0;
+}
+.nav-container {
+   display: flex;
+   gap: 2rem;
+   justify-content: space-between;
+   align-items: center;
+   height: 100%;
+}
+.logo {
+   min-width: 10rem;
+}
+.nav-list {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   gap: 4rem;
+}
+.nav-list__links {
+   text-decoration: none;
+   color: var(--main-color);
+   transition: all 0.2s ease;
+}
+.nav-list__links:hover,
+.nav-list__links:focus {
+   color: var(--color-accent);
+   outline: none;
+}
+.nav-search input {
+   max-width: 20ch;
+   padding: 0.25rem 1rem;
+   border: none;
+   border-radius: 1rem;
+   outline: none;
+   background: var(--main-color);
+}
+.nav-search input:focus-within {
+   background: var(--color-accent);
+}
+/* hero */
+.hero {
+   padding: 3rem 0;
+   background: url(./image/heroBg.jpg) no-repeat;
+   background-size: cover;
+}
+.hero-text {
+   margin: 4rem 0;
+   color: var(--main-color-dark);
+   text-align: center;
+}
+.hero-text h1 {
+   font-size: var(--fz-main-title);
+}
+.hero-slider {
+   border-radius: 1rem;
+   width: 100%;
+   min-height: max-content;
+   display: flex;
+   overflow: hidden;
+   color: var(--main-color);
+}
+.hero-slider-cards {
+   display: flex;
+   height: 100%;
+   width: 100%;
+   transition: all 1s ease;
+}
+.hero-slider-card {
+   padding: 1rem;
+   background: var(--main-color-dark);
+   flex: 1 0 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* 
+main section styles
+*/
+/* about */
+.about {
+   background: var(--main-color-dark);
+   color: var(--main-color);
+   position: relative;
+   background: url(./image/pexels-tima-miroshnichenko-7991182.jpg) no-repeat;
+   background-size: cover;
+}
+.about::after {
+   content: '';
+   position: absolute;
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   background: linear-gradient(to right, rgb(0 0 0 / 1) 40%, rgba(0 0 0 / 0) 100%);
+   z-index: 1;
+}
+.about-text {
+   max-width: 60ch;
+   position: relative;
+   z-index: 2;
+}
+
+/* top rated section */
+.top-rated {
+   width: 100%;
+   height: 100%;
+   background: var(--main-color-dark);
+   position: relative;
+}
+.media-scroller {
+   --_subaccent-color: #111;
+   width: 100%;
+   display: grid;
+   grid-auto-flow: column;
+   grid-auto-columns: 25%;
+   gap: var(--scroller-gap);
+
+   padding: 0 var(--scroller-gap) var(--scroller-gap);
+
+   overflow-x: auto;
+   overscroll-behavior-inline: contain;
+}
+.snaps-inline {
+   scroll-snap-type: inline mandatory;
+}
+.snaps-inline > * {
+   scroll-snap-align: start;
+}
+.media-element {
+   display: grid;
+   grid-template-rows: min-content;
+   gap: var(--scroller-gap);
+   position: relative;
+   padding: var(--scroller-gap);
+   background: var(--_subaccent-color);
+   border-radius: 0.5rem;
+}
+.media-element > img {
+   width: 100%;
+   aspect-ratio: 2 / 3;
+   object-fit: cover;
+}
+.media-element-content {
+   position: absolute;
+   inset: 0;
+   z-index: 2;
+   display: none;
+}
+.media-element-title {
+   color: var(--color-accent);
+}
+.media-scroller-controls {
+   position: absolute;
+   inset: 0;
+   z-index: 5;
+   font-size: 3em;
+   pointer-events: none;
+}
+.media-scroller-arrow {
+   --_controls-subcolor: #b88517;
+   padding: 0;
+   margin: 0;
+   background: none;
+   border: none;
+   outline: none;
+   cursor: pointer;
+
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+
+   color: var(--color-accent);
+   pointer-events: all;
+
+   transition: color 0.1s ease-in;
+}
+.media-scroller-arrow:hover {
+   color: var(--_controls-subcolor);
+}
+.media-scroller-arrow.right {
+   right: 5%;
+}
+.media-scroller-arrow.left {
+   left: 5%;
+}
