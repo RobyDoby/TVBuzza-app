@@ -232,3 +232,8 @@ main section styles
 .media-scroller-arrow.left {
    left: 1rem;
 }
+
+/* tvshow list section styles */
+.tv-show-list {
+   color: black;
+}

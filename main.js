@@ -29,10 +29,10 @@ function resumeSliderAutoplay() {
 }
 changeSlide();
 
-// sections media scrollers code
+// media scrollers sections code
 
-const mediaScrollerLeftBtn = document.querySelector('.media-scroller-arrow.left');
-const mediaScrollerRightBtn = document.querySelector('.media-scroller-arrow.right');
+const mediaScrollerLeftBtn = document.querySelectorAll('.media-scroller-arrow.left');
+const mediaScrollerRightBtn = document.querySelectorAll('.media-scroller-arrow.right');
 const mediaScroller = document.querySelector('.media-scroller');
 const mediaElement = document.querySelector('.media-element');
 
@@ -47,12 +47,22 @@ function getMediaElementWidth() {
 }
 getMediaElementWidth();
 
-mediaScrollerLeftBtn.addEventListener('click', () => {
-   mediaScroller.scrollBy({ left: -mediaElementWidth * 2, behavior: 'smooth' });
+mediaScrollerLeftBtn.forEach((btn) => {
+   btn.addEventListener('click', scrollLeft);
 });
-mediaScrollerRightBtn.addEventListener('click', () => {
-   mediaScroller.scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
+mediaScrollerRightBtn.forEach((btn) => {
+   btn.addEventListener('click', scrollRight);
 });
+function scrollLeft(e) {
+   e.target
+      .closest('[data-media-scroller]')
+      .scrollBy({ left: -mediaElementWidth * 2, behavior: 'smooth' });
+}
+function scrollRight(e) {
+   e.target
+      .closest('[data-media-scroller]')
+      .scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
+}
 
 // Подумать как сделать единый медиа скроллер код для всех скроллеров на странице
 // использовать дата атрибуты? или поиск по родителю
