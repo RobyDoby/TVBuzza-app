@@ -352,39 +352,450 @@
 					</div>
 				</div>
 			</section>
+
+			<!-- filter section -->
+
+
 			<section class="tv-show-list" aria-label="tv-show list">
-				<details class="list-filter">
-					<summary>Filter</summary>
-					<form>
-						<fieldset>
-							<legend>Choose an options</legend>
-								<select name="genres" id="genres" multiple>
-									<option value="Action">Action</option>
-									<option value="Adventure">Adventure</option>
-									<option value="Drama">Drama</option>
-									<option value="Science-fiction">Science-fiction</option>
-									<option value="Fantasy">Fantasy</option>
-									<option value="Mystery">Mystery</option>
-									<option value="Supernatural">Supernatural</option>
-									<option value="Thriller">Thriller</option>
-									<option value="Horror">Horror</option>
-									<option value="Crime">Crime</option>
-									<option value="Legal">Legal</option>
-									<option value="Medical">Medical</option>
-									<option value="Espionage">Espionage</option>
-									<option value="History">History</option>
-									<option value="War">War</option>
-									<option value="Romance">Romance</option>
-									<option value="Music">Music</option>
-									<option value="Family">Family</option>
-									<option value="Anime">Anime</option>
-									<option value="Western">Western</option>
-									<option value="Without Genres">Without Genres</option>
-								</select>
-						</fieldset>
-						<!-- Подумать, может сделать жанр годы и прочее через чекбоксы -->
-					</form>
-				</details>
+				<div class="wrapper">
+					<h2 class="section-title">Choose your show</h2>
+					<button class="toggleFilter">Filter</button>
+					<div class="filter">
+						<div class="filter-dropdowns">
+							<div class="genres-dropdown">
+								<div class="dropdown-content">
+									<div class="dropdown-content-title">Genres</div>
+									<div class="dropdown-content-extra"></div>
+								</div>
+								<div class="dropdown-content-icon">
+									<i class="fa-solid fa-angle-down"></i>
+									<!-- <i class="fa-solid fa-angle-up"></i> для изменения -->
+								</div>
+								<ul class="genres-dropdown-list">
+									<li>
+										<button class="toggle-genres">Check All</button>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="action" id="action">
+											<div class="dropdown-label-text">Action</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="adventure" id="adventure">
+											<div class="dropdown-label-text">Adventure</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="drama" id="drama">
+											<div class="dropdown-label-text">Drama</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="science-fiction" id="science-fiction">
+											<div class="dropdown-label-text">Science-fiction</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="fantasy" id="fantasy">
+										</label>
+										<div class="dropdown-label-text">Fantasy</div>
+										<div class="dropdown-label-check-icon">
+											<i class="fa-solid fa-check"></i>
+										</div>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="mystery" id="mystery">
+											<div class="dropdown-label-text">Mystery</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="supernatural" id="supernatural">
+											<div class="dropdown-label-text">Supernatural</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="thriller" id="thriller">
+											<div class="dropdown-label-text">Thriller</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="horror" id="horror">
+											<div class="dropdown-label-text">Horror</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="crime" id="crime">
+											<div class="dropdown-label-text">Crime</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="legal" id="legal">
+											<div class="dropdown-label-text">Legal</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="medical" id="medical">
+											<div class="dropdown-label-text">Medical</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="espionage" id="espionage">
+											<div class="dropdown-label-text">Espionage</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="history" id="history">
+											<div class="dropdown-label-text">History</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="war" id="war">
+											<div class="dropdown-label-text">War</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="romance" id="romance">
+											<div class="dropdown-label-text">Romance</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="music" id="music">
+											<div class="dropdown-label-text">Music</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="family" id="family">
+											<div class="dropdown-label-text">Family</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="anime" id="anime">
+											<div class="dropdown-label-text">Anime</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="western" id="western">
+											<div class="dropdown-label-text">Western</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="genres-dropdown-label">
+											<input type="checkbox" name="without-genres" id="without-genres">
+											<div class="dropdown-label-text">Without Genres</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+								</ul>
+							</div>
+							<!-- years dropdown -->
+							<div class="years-dropdown">
+								<div class="dropdown-content">
+									<div class="dropdown-content-title">Years</div>
+									<div class="dropdown-content-extra"></div>
+								</div>
+								<div class="dropdown-content-icon">
+									<i class="fa-solid fa-angle-down"></i>
+									<!-- <i class="fa-solid fa-angle-up"></i> для изменения -->
+								</div>
+								<ul class="years-dropdown-list">
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years" checked>
+											<div class="dropdown-label-text">All Years</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">before 2000</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2000</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2001</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2002</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2003</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2004</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2005</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2006</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2007</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2008</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2009</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2010</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2011</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2012</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2013</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="years-dropdown-label">
+											<input type="radio" name="years">
+											<div class="dropdown-label-text">2014</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+								</ul>
+							</div>
+							<!-- rating dropdown -->
+							<div class="rating-dropdown">
+								<div class="dropdown-content">
+									<div class="dropdown-content-title">Rating</div>
+									<div class="dropdown-content-extra"></div>
+								</div>
+								<div class="dropdown-content-icon">
+									<i class="fa-solid fa-angle-down"></i>
+									<!-- <i class="fa-solid fa-angle-up"></i> для изменения -->
+								</div>
+								<ul class="rating-dropdown-list">
+									<li>
+										<label class="country-dropdown-label">
+											<input type="radio" name="rating" checked>
+											<div class="dropdown-label-text">All Ratings</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="country-dropdown-label">
+											<input type="radio" name="rating">
+											<div class="dropdown-label-text">&lt;6</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="country-dropdown-label">
+											<input type="radio" name="rating">
+											<div class="dropdown-label-text">6-7</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="country-dropdown-label">
+											<input type="radio" name="rating">
+											<div class="dropdown-label-text">7-8</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li>
+										<label class="country-dropdown-label">
+											<input type="radio" name="rating">
+											<div class="dropdown-label-text">&gt;8</div>
+											<div class="dropdown-label-check-icon">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+						</div>
+					</div>
+				</div>
+				<div class="clear-filter">
+					<i class="fa-solid fa-xmark"></i>
+					<span>Clear filter</span>
+				</div>
+				</div>
 			</section>
       </main>
 		<!-- details tag polyfill for Edge -->
