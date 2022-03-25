@@ -300,3 +300,6 @@ main section styles
 .dropdown-label input:checked ~ .dropdown-label-check-icon {
    display: block;
 }
+.dropdown-label input:checked + .dropdown-label-text {
+   color: var(--color-accent);
+}
