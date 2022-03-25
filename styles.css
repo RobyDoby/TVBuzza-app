@@ -277,7 +277,10 @@ main section styles
 .filter-dropdowns ul {
    list-style-type: none;
    background: var(--main-color-dark-200);
-   padding-inline: 1em;
+   padding: 1em;
+   border-radius: 1rem;
+   max-height: 40vh;
+   overflow-y: auto;
 }
 .filter-dropdowns li {
    cursor: pointer;
@@ -291,15 +294,28 @@ main section styles
    justify-content: space-between;
    align-items: center;
 }
-.dropdown-label > input {
+.dropdown-label > input,
+.strict-mode-toggler > input {
    display: none;
 }
 .dropdown-label-check-icon {
    display: none;
 }
-.dropdown-label input:checked ~ .dropdown-label-check-icon {
+.dropdown-label input:checked ~ .dropdown-label-check-icon,
+.strict-mode-toggler input:checked ~ .dropdown-label-check-icon {
    display: block;
 }
 .dropdown-label input:checked + .dropdown-label-text {
    color: var(--color-accent);
+}
+.strict-mode-toggler {
+   display: flex;
+   gap: 0.5rem;
+}
+.filter-control-btns {
+   display: flex;
+   justify-content: space-between;
+   padding: 1em;
+   border-radius: 1rem;
+   background-color: var(--main-color-dark-200);
 }
