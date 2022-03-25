@@ -7,8 +7,10 @@ General styles
    --fz-content: 1.25rem;
 
    --main-color: #fff;
-   --main-color-dark: #000;
+   --main-color-dark-100: #111;
+   --main-color-dark-200: #000;
    --color-accent: #ffb71c;
+   --accent-subcolor: #b88517;
 
    --scroller-gap: 1em;
 }
@@ -31,14 +33,34 @@ body {
 }
 .section-title {
    font-size: var(--fz-subtitles);
-   color: var(--color-accent);
+   text-transform: uppercase;
    margin-bottom: 2rem;
+}
+.c-accent {
+   color: var(--color-accent);
+}
+.bg-accent {
+   background-color: var(--color-accent);
 }
 /* .section-title.inverted {
    color: var(--color-accent);
 } */
 section {
    padding-block: 2rem;
+}
+.btn {
+   padding: 0.25em 1.5em;
+   border: none;
+   border-radius: 1rem;
+   margin-bottom: 1rem;
+   transition: 150ms ease-in-out;
+   cursor: pointer;
+}
+.btn:hover,
+.btn:focus-within {
+   background: var(--accent-subcolor);
+   color: var(--main-color);
+   transform: scale(0.95);
 }
 
 /* 
@@ -47,7 +69,7 @@ Header section styles
 /* nav */
 nav {
    width: 100%;
-   background: var(--main-color-dark);
+   background: var(--main-color-dark-200);
    padding: 0;
 }
 .nav-container {
@@ -96,7 +118,7 @@ nav {
 }
 .hero-text {
    margin: 4rem 0;
-   color: var(--main-color-dark);
+   color: var(--main-color-dark-200);
    text-align: center;
 }
 .hero-text h1 {
@@ -118,7 +140,7 @@ nav {
 }
 .hero-slider-card {
    padding: 1rem;
-   background: var(--main-color-dark);
+   background: var(--main-color-dark-200);
    flex: 1 0 100%;
    display: flex;
    justify-content: center;
@@ -130,7 +152,7 @@ main section styles
 */
 /* about */
 .about {
-   background: var(--main-color-dark);
+   background: var(--main-color-dark-200);
    color: var(--main-color);
    position: relative;
    background: url(./image/pexels-tima-miroshnichenko-7991182.jpg) no-repeat;
@@ -156,20 +178,19 @@ main section styles
 .scroller-section {
    width: 100%;
    height: 100%;
-   background: var(--main-color-dark);
+   background: var(--main-color-dark-200);
    position: relative;
 }
 .media-scroller {
-   --_subaccent-color: #111;
-   /* width: 100%; */
    display: grid;
    grid-auto-flow: column;
-   grid-auto-columns: 25%;
+   grid-auto-columns: 23%;
    gap: var(--scroller-gap);
 
    padding: 0 var(--scroller-gap) var(--scroller-gap);
 
    overflow-x: auto;
+   /* overflow: hidden; */
    overscroll-behavior-inline: contain;
 }
 .snaps-inline {
@@ -184,7 +205,7 @@ main section styles
    gap: var(--scroller-gap);
    position: relative;
    padding: var(--scroller-gap);
-   background: var(--_subaccent-color);
+   background: var(--main-color-dark-100);
    border-radius: 0.5rem;
 }
 
@@ -199,11 +220,7 @@ main section styles
    z-index: 2;
    display: none;
 }
-.media-element-title {
-   color: var(--color-accent);
-}
 .media-scroller-arrow {
-   --_controls-subcolor: #b88517;
    padding: 0;
    margin: 0;
    background: none;
@@ -218,13 +235,12 @@ main section styles
 
    font-size: 2em;
 
-   color: var(--color-accent);
    pointer-events: all;
 
    transition: color 0.1s ease-in;
 }
 .media-scroller-arrow:hover {
-   color: var(--_controls-subcolor);
+   color: var(--accent-subcolor);
 }
 .media-scroller-arrow.right {
    right: 1rem;
@@ -235,5 +251,52 @@ main section styles
 
 /* tvshow list section styles */
 .tv-show-list {
-   color: black;
+   background-color: var(--main-color-dark-200);
+}
+.filter {
+   background-color: var(--main-color-dark-100);
+   width: 100%;
+   padding: 1em;
+   border-radius: 1rem;
+}
+.filter-dropdowns {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+   gap: 2em;
+}
+.dropdown-content {
+   display: flex;
+}
+.dropdown-content-icon {
+   margin-left: 2rem;
+}
+.dropdown-content-icon:hover,
+.dropdown-content-icon:focus-within {
+   color: var(--accent-subcolor);
+}
+.filter-dropdowns ul {
+   list-style-type: none;
+   background: var(--main-color-dark-200);
+   padding-inline: 1em;
+}
+.filter-dropdowns li {
+   cursor: pointer;
+}
+.filter-dropdowns li:hover,
+.filter-dropdowns li:focus {
+   color: var(--color-accent);
+}
+.dropdown-label {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.dropdown-label > input {
+   display: none;
+}
+.dropdown-label-check-icon {
+   display: none;
+}
+.dropdown-label input:checked ~ .dropdown-label-check-icon {
+   display: block;
 }
