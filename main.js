@@ -64,8 +64,26 @@ function scrollRight(e) {
       .scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
 }
 
-// Подумать как сделать единый медиа скроллер код для всех скроллеров на странице
-// использовать дата атрибуты? или поиск по родителю
+//  code for toggle filter dropdowns
+
+const dropdownContentBtns = document.querySelectorAll('.dropdown-content');
+const filterBtn = document.querySelector('.toggleFilter');
+const filter = document.querySelector('.filter');
+
+filterBtn.addEventListener('click', () => {
+   filter.classList.toggle('active');
+});
+
+dropdownContentBtns.forEach((btn) => {
+   btn.addEventListener('click', (e) => {
+      let parent = e.target.closest('.dropdown-content');
+      let dropdownList = parent.parentElement.querySelector('.dropdown-list');
+      dropdownList.classList.toggle('active');
+      if (dropdownList.classList.contains('active')) {
+         dropdownList.scrollTop = 0;
+      }
+   });
+});
 
 // Набросок для темплейта
 

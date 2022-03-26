@@ -23,6 +23,7 @@ html {
    color: var(--main-color);
 }
 body {
+   font-size: clamp(1rem, 10vw, 5rem);
    font-size: var(--fz-content);
 }
 .wrapper {
@@ -258,6 +259,10 @@ main section styles
    width: 100%;
    padding: 1em;
    border-radius: 1rem;
+   display: none;
+}
+.filter.active {
+   display: block;
 }
 .filter-dropdowns {
    display: grid;
@@ -266,6 +271,26 @@ main section styles
 }
 .dropdown-content {
    display: flex;
+   flex-direction: column;
+   padding-inline: 1em;
+   border-radius: 1rem;
+   background-color: var(--main-color-dark-200);
+   cursor: pointer;
+}
+.dropdown-content-top {
+   display: flex;
+}
+.dropdown-content-title {
+   max-width: min-content;
+}
+.dropdown-content-extra {
+   max-width: 30ch;
+   font-size: 0.8rem;
+   color: #aaa;
+
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 .dropdown-content-icon {
    margin-left: 2rem;
@@ -274,15 +299,23 @@ main section styles
 .dropdown-content-icon:focus-within {
    color: var(--accent-subcolor);
 }
-.filter-dropdowns ul {
+.dropdown-list {
+   max-height: 40vh;
+   padding: 1em;
+   margin: 0;
+
    list-style-type: none;
    background: var(--main-color-dark-200);
-   padding: 1em;
-   border-radius: 1rem;
-   max-height: 40vh;
+   border-top: 1px solid var(--color-accent);
+
    overflow-y: auto;
+   display: none;
 }
-.filter-dropdowns li {
+.dropdown-list.active {
+   display: block;
+   visibility: visible;
+}
+.filter-dropdowns li > * {
    cursor: pointer;
 }
 .filter-dropdowns li:hover,
@@ -308,14 +341,36 @@ main section styles
 .dropdown-label input:checked + .dropdown-label-text {
    color: var(--color-accent);
 }
+
+.filter-control-btns {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+   flex-wrap: wrap;
+   gap: 2em;
+   padding: 1em;
+   margin-top: 2rem;
+   border-radius: 1rem;
+   background-color: var(--main-color-dark-200);
+}
+.filter-control-btns > * {
+   flex: 1 0 10rem;
+   cursor: pointer;
+}
 .strict-mode-toggler {
    display: flex;
    gap: 0.5rem;
+   position: relative;
+   max-width: max-content;
+   margin-right: 1rem;
 }
-.filter-control-btns {
-   display: flex;
-   justify-content: space-between;
-   padding: 1em;
-   border-radius: 1rem;
-   background-color: var(--main-color-dark-200);
+.strict-mode-toggler label {
+   cursor: pointer;
+}
+.strict-mode-toggler .dropdown-label-check-icon {
+   position: absolute;
+   left: 105%;
+}
+.apply-filter {
+   max-width: fit-content;
+   margin: 0;
 }
