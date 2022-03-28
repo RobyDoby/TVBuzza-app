@@ -67,23 +67,46 @@ function scrollRight(e) {
 //  code for toggle filter dropdowns
 
 const dropdownContentBtns = document.querySelectorAll('.dropdown-content');
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+const tvShowList = document.querySelector('.tv-show-list');
 const filterBtn = document.querySelector('.toggleFilter');
 const filter = document.querySelector('.filter');
 
+// toggle filter
 filterBtn.addEventListener('click', () => {
    filter.classList.toggle('active');
 });
-
-dropdownContentBtns.forEach((btn) => {
-   btn.addEventListener('click', (e) => {
-      let parent = e.target.closest('.dropdown-content');
-      let dropdownList = parent.parentElement.querySelector('.dropdown-list');
-      dropdownList.classList.toggle('active');
-      if (dropdownList.classList.contains('active')) {
-         dropdownList.scrollTop = 0;
+// hide dropdowns clicking outside
+tvShowList.addEventListener('click', function (e) {
+   dropdownToggles.forEach((dropdown) => {
+      if (!dropdown.contains(e.target)) {
+         dropdown.classList.remove('active');
       }
    });
+   e.stopPropagation();
 });
+
+// toggle dropdowns lists
+dropdownContentBtns.forEach((btn) => {
+   btn.addEventListener('click', (e) => {
+      let parent = e.target.closest('.dropdown-toggle');
+      let dropdownList = parent.querySelector('.dropdown-list');
+      parent.classList.toggle('active');
+      if (parent.classList.contains('active')) {
+         dropdownList.scrollTop = 0;
+         return;
+      } else {
+         hideActiveDropdowns();
+      }
+      e.stopPropagation();
+   });
+});
+function hideActiveDropdowns() {
+   let dropdowns = document.querySelectorAll('.dropdown-toggle.active');
+   dropdowns.forEach((elem) => {
+      elem.classList.remove('active');
+   });
+}
 
 // Набросок для темплейта
 

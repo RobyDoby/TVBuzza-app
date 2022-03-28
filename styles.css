@@ -31,6 +31,7 @@ body {
 }
 .wrapper {
    width: 80%;
+   max-width: 1600px;
    margin: 0 auto;
    height: 100%;
    position: relative;
@@ -62,8 +63,6 @@ section {
 }
 .btn:hover,
 .btn:focus-within {
-   background: var(--accent-subcolor);
-   color: var(--main-color);
    transform: scale(0.95);
 }
 
@@ -190,8 +189,7 @@ main section styles
    grid-auto-flow: column;
    grid-auto-columns: 23%;
    gap: var(--scroller-gap);
-
-   padding: 0 var(--scroller-gap) var(--scroller-gap);
+   padding: var(--scroller-gap);
 
    overflow-x: auto;
    /* overflow: hidden; */
@@ -202,6 +200,7 @@ main section styles
 }
 .snaps-inline > * {
    scroll-snap-align: start;
+   scroll-margin-left: var(--border-radius-main);
 }
 .media-element {
    display: grid;
@@ -210,10 +209,9 @@ main section styles
    position: relative;
    padding: var(--scroller-gap);
    background: var(--main-color-dark-300);
-   border-radius: var(--border-radius-main);
    cursor: pointer;
+   transition: all 200ms ease-in-out;
 }
-
 .media-element > img {
    width: 100%;
    aspect-ratio: 2 / 3;
@@ -226,9 +224,12 @@ main section styles
    opacity: 0;
 
    padding: var(--scroller-gap);
-   color: var(--main-color-dark-400);
-   background-color: var(--color-accent);
+   color: var(--main-color);
+   background-color: rgba(0 0 0 / 0.9);
    transition: all 200ms ease-in-out;
+}
+.media-element:hover {
+   transform: scale(1.05);
 }
 .media-element:hover .media-element-content {
    opacity: 1;
@@ -283,6 +284,10 @@ main section styles
    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
    gap: 2em;
 }
+.dropdown-toggle {
+   justify-self: start;
+   align-self: start;
+}
 .dropdown-content {
    display: flex;
    flex-direction: column;
@@ -325,7 +330,7 @@ main section styles
    overflow-y: auto;
    display: none;
 }
-.dropdown-list.active {
+.dropdown-toggle.active .dropdown-list {
    display: block;
    visibility: visible;
 }
@@ -376,19 +381,36 @@ main section styles
    position: relative;
    max-width: max-content;
    margin-right: 1rem;
+   transition: all 200ms ease-in-out;
+}
+.strict-mode-toggler:hover {
+   color: var(--color-accent);
 }
 .strict-mode-toggler label {
    cursor: pointer;
+   display: flex;
 }
 .strict-mode-toggler .dropdown-label-check-icon {
    position: absolute;
    left: 105%;
 }
+.strict-check-icon {
+   display: none;
+}
 .strict-plus-icon {
    display: block;
 }
-.strict-mode-toggler input:checked ~ .strict-plus-icon {
+.strictModeBtn:checked + label .strict-plus-icon {
    display: none;
+}
+.strictModeBtn:checked + label .strict-check-icon {
+   display: block;
+}
+.clear-filter {
+   transition: all 200ms ease-in-out;
+}
+.clear-filter:hover {
+   color: var(--color-accent);
 }
 .apply-filter {
    max-width: fit-content;
@@ -401,7 +423,6 @@ main section styles
 
    padding: var(--scroller-gap);
    border-radius: var(--border-radius-main);
-   background: var(--main-color-dark-300);
 }
 .filter-card {
    display: grid;
@@ -410,9 +431,10 @@ main section styles
    gap: var(--scroller-gap);
    position: relative;
    padding: var(--scroller-gap);
-   background: var(--main-color-dark-200);
+   background: var(--main-color-dark-300);
    border-radius: var(--border-radius-main);
    cursor: pointer;
+   transition: all 200ms ease-in-out;
 }
 
 .filter-card > img {
@@ -427,13 +449,20 @@ main section styles
    opacity: 0;
 
    padding: var(--scroller-gap);
-   color: var(--main-color-dark-400);
-   background-color: var(--color-accent);
+   color: var(--main-color);
+   background-color: rgba(0 0 0 / 0.9);
+   border-radius: var(--border-radius-main);
    transition: all 200ms ease-in-out;
+}
+.filter-card:hover {
+   transform: scale(1.05);
 }
 .filter-card:hover .filter-card-content {
    opacity: 1;
    inset: 0;
+}
+.filter-card-content span {
+   color: var(--color-accent);
 }
 /* news section styles */
 .news {
