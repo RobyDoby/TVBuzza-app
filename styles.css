@@ -386,6 +386,50 @@ main section styles
 .strict-mode-toggler:hover {
    color: var(--color-accent);
 }
+.tooltip {
+   position: relative;
+   display: inline-block;
+}
+.tooltipText {
+   width: max-content;
+   max-width: 45ch;
+   padding: 0.5rem;
+   margin-bottom: 0.5rem;
+
+   background-color: var(--main-color-dark-400);
+   border-radius: var(--border-radius-main);
+   visibility: hidden;
+   text-align: center;
+   color: var(--main-color);
+
+   position: absolute;
+   left: 50%;
+   bottom: 100%;
+   z-index: 5;
+   transform: translateX(-50%);
+   transition: all 250ms ease-in;
+
+   cursor: default;
+}
+.tooltipText::after {
+   content: ' ';
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   border-width: 0.5rem;
+   border-style: solid;
+   border-color: var(--main-color-dark-400) transparent transparent transparent;
+}
+.tooltip-icon {
+   transition: all 250ms ease;
+}
+.tooltip:hover .tooltip-icon {
+   color: var(--accent-subcolor);
+}
+.tooltip:hover .tooltipText {
+   visibility: visible;
+}
 .strict-mode-toggler label {
    cursor: pointer;
    display: flex;
@@ -464,7 +508,9 @@ main section styles
 .filter-card-content span {
    color: var(--color-accent);
 }
+
 /* news section styles */
+
 .news {
    background-color: var(--main-color-dark-400);
 }
