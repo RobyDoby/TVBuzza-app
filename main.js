@@ -1,4 +1,6 @@
+//
 // Hero slider code
+//
 const slider = document.querySelector('.hero-slider');
 const sliderCards = document.querySelector('.hero-slider-cards');
 let slideWidth;
@@ -29,8 +31,9 @@ function resumeSliderAutoplay() {
 }
 changeSlide();
 
+//
 // media scrollers sections code
-
+//
 const mediaScrollerLeftBtn = document.querySelectorAll('.media-scroller-arrow.left');
 const mediaScrollerRightBtn = document.querySelectorAll('.media-scroller-arrow.right');
 const mediaScroller = document.querySelector('.media-scroller');
@@ -64,8 +67,9 @@ function scrollRight(e) {
       .scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
 }
 
+//
 //  code for toggle filter dropdowns
-
+//
 const dropdownContentBtns = document.querySelectorAll('.dropdown-content');
 const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 const tvShowList = document.querySelector('.tv-show-list');
@@ -106,6 +110,32 @@ function hideActiveDropdowns() {
    dropdowns.forEach((elem) => {
       elem.classList.remove('active');
    });
+}
+
+//
+// modal code
+//
+const modal = document.querySelector('.modal');
+const modalContent = document.querySelector('.modal-content');
+const mediaElementsParents = document.querySelectorAll('.media-element-parent');
+
+mediaElementsParents.forEach((elem) => {
+   elem.addEventListener('click', openModal);
+});
+modal.addEventListener('click', closeModal);
+modalContent.addEventListener('click', (e) => {
+   e.preventDefault();
+   e.stopPropagation();
+   e.stopImmediatePropagation();
+   return false;
+});
+function openModal(e) {
+   if (e.target.classList.contains('modalBtn')) {
+      modal.classList.add('visible');
+   }
+}
+function closeModal() {
+   modal.classList.remove('visible');
 }
 
 // Набросок для темплейта
