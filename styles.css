@@ -209,28 +209,55 @@ main section styles
       hsl(var(--color-accent) / 0.8),
       hsl(var(--accent-subcolor) / 0.8)
    );
+   width: 100%;
+   padding-block: var(--main-spacing);
    inset: 0;
-   width: 0px;
-   /* height: 0px; */
    opacity: 0;
-   transition: opacity 0.35s ease-out, width 0s linear 0.15s, height 0s linear 0.15s;
+   transition: all 550ms ease-in-out;
    z-index: 10;
    display: flex;
    justify-content: center;
    align-items: center;
+   pointer-events: none;
 }
 .modal.visible {
-   width: 100%;
-   /* height: 100%; */
    opacity: 1;
-   transition: opacity 350ms ease-in-out;
+   pointer-events: all;
+}
+.modal.visible .modal-content {
+   transform: scale(1);
 }
 .modal-content {
    max-width: 1500px;
    width: 80%;
+   height: 100%;
    padding: var(--main-spacing);
+
    background-color: hsl(var(--main-color-dark-400));
+   transform: scale(0);
+   transition: all 550ms ease-in-out;
+   overflow-y: auto;
 }
+.modal-content-container {
+   display: grid;
+   grid-template-columns: 30% 70%;
+   gap: var(--main-spacing);
+}
+.modal-content-primary > img {
+   width: 100%;
+}
+.tvRate {
+   font-size: 1.5rem;
+}
+.modal-content-secondary {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+.modal-content-third {
+   grid-column: 1 / span 2;
+}
+
 /* scroller sections styles */
 .scroller-section {
    width: 100%;
@@ -459,7 +486,7 @@ main section styles
    left: 50%;
    bottom: 100%;
    z-index: 5;
-   transform: translateX(-50%);
+   transform: translateX(-50%) scale(0);
    transition: all 200ms ease-in;
 
    cursor: default;
@@ -482,6 +509,7 @@ main section styles
 }
 .tooltip:hover .tooltipText {
    visibility: visible;
+   transform: translateX(-50%) scale(1);
 }
 .strict-mode-toggler label {
    cursor: pointer;
