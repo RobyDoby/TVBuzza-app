@@ -242,6 +242,7 @@ main section styles
    display: grid;
    grid-template-columns: 30% 70%;
    gap: var(--main-spacing);
+   position: relative;
 }
 .modal-content-primary > img {
    width: 100%;
@@ -256,6 +257,20 @@ main section styles
 }
 .modal-content-third {
    grid-column: 1 / span 2;
+}
+.modal-content-close-btn {
+   position: absolute;
+   inset: 0;
+   pointer-events: none;
+}
+.modal-close-icon {
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: 10;
+   pointer-events: all;
+   font-size: var(--fz-subtitles);
+   cursor: pointer;
 }
 
 /* scroller sections styles */

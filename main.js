@@ -118,6 +118,7 @@ function hideActiveDropdowns() {
 const modal = document.querySelector('.modal');
 const modalContent = document.querySelector('.modal-content');
 const mediaElementsParents = document.querySelectorAll('.media-element-parent');
+const modalCloseBtn = document.querySelector('.modal-close-icon');
 
 mediaElementsParents.forEach((elem) => {
    elem.addEventListener('click', openModal);
@@ -129,6 +130,8 @@ modalContent.addEventListener('click', (e) => {
    e.stopImmediatePropagation();
    return false;
 });
+modalCloseBtn.addEventListener('click', closeModal);
+
 function openModal(e) {
    if (e.target.classList.contains('modalBtn')) {
       modal.classList.add('visible');
