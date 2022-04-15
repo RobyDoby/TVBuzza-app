@@ -74,10 +74,12 @@ section {
    margin-bottom: 1rem;
    transition: 150ms ease-in-out;
    cursor: pointer;
+   background-color: hsl(var(--main-color));
 }
 .btn:hover,
 .btn:focus-within {
    transform: scale(0.95);
+   background-color: hsl(var(--color-accent));
 }
 
 /* 
@@ -260,17 +262,23 @@ main section styles
 }
 .modal-content-close-btn {
    position: absolute;
-   inset: 0;
+   top: 0;
+   right: 0;
+   bottom: 0;
    pointer-events: none;
 }
 .modal-close-icon {
-   position: absolute;
-   right: 0;
+   position: sticky;
    top: 0;
    z-index: 10;
    pointer-events: all;
    font-size: var(--fz-subtitles);
    cursor: pointer;
+}
+body.modal-opened {
+   height: 100vh;
+   overflow-y: hidden;
+   padding-right: 17px;
 }
 
 /* scroller sections styles */
@@ -325,6 +333,9 @@ main section styles
    color: hsl(var(--main-color));
    background-color: rgba(0 0 0 / 0.9);
    transition: all 200ms ease-in-out;
+}
+.media-element-content > button {
+   align-self: center;
 }
 .media-element:hover {
    transform: scale(0.95);

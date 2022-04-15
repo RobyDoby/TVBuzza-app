@@ -116,6 +116,7 @@ function hideActiveDropdowns() {
 // modal code
 //
 const modal = document.querySelector('.modal');
+const body = document.body;
 const modalContent = document.querySelector('.modal-content');
 const mediaElementsParents = document.querySelectorAll('.media-element-parent');
 const modalCloseBtn = document.querySelector('.modal-close-icon');
@@ -134,10 +135,21 @@ modalCloseBtn.addEventListener('click', closeModal);
 
 function openModal(e) {
    if (e.target.classList.contains('modalBtn')) {
+      body.classList.add('modal-opened');
+      body.style.top = `-${window.scrollY}px`;
+      body.style.position = 'fixed';
+
       modal.classList.add('visible');
    }
 }
 function closeModal() {
+   const scrollVertical = body.style.top;
+   console.log(scrollVertical);
+   body.style.position = '';
+   body.style.top = '';
+   body.classList.remove('modal-opened');
+   window.scrollTo(0, parseInt(scrollVertical || '0') * -1);
+
    modal.classList.remove('visible');
 }
 
