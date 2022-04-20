@@ -1,3 +1,4 @@
+const API_URL = 'https://api.tvmaze.com/shows';
 //
 // Hero slider code
 //
@@ -144,7 +145,6 @@ function openModal(e) {
 }
 function closeModal() {
    const scrollVertical = body.style.top;
-   console.log(scrollVertical);
    body.style.position = '';
    body.style.top = '';
    body.classList.remove('modal-opened');
@@ -153,20 +153,63 @@ function closeModal() {
    modal.classList.remove('visible');
 }
 
-// Набросок для темплейта
+// fetching the data
 
-// const body = document.querySelector('body');
+async function fetchShows() {
+   try {
+      const response = await fetch(API_URL);
+      const shows = await response.json();
+      return shows;
+   } catch (err) {
+      console.error(err);
+   }
+}
+function createCards(shows, context) {
+   const template = document.querySelector('[data-media-card-template]');
+   shows.forEach((show) => {
+      const card = template.content.cloneNode(true).children[0];
+      let img = card.querySelector('[data-img]');
+      img.setAttribute('loading', 'lazy');
+      let name = card.querySelector('[data-name]');
+      let genre = card.querySelector('[data-genre]');
+      let year = card.querySelector('[data-year]');
+      let rate = card.querySelector('[data-rate]');
 
-// let getData = function () {
-//    fetch('https://api.tvmaze.com/shows')
-//       .then((res) => res.json())
-//       .then((data) => {
-//          console.log(data);
-//          data.forEach((show) => {
-//             let image = document.createElement('img');
-//             image.setAttribute('src', `${show.image.medium}`);
-//             body.append(image);
-//          });
-//       });
-// };
-// getData();
+      img.src = show.image.medium;
+      img.alt = show.name + 'poster';
+      name.textContent = show.name;
+      if (show.genres.length < 1) {
+         genre.textContent = 'No-genre';
+      } else {
+         show.genres.forEach((showGenre) => {
+            genre.innerHTML += `<li>${showGenre}</li>`;
+         });
+      }
+      year.textContent = show.premiered.slice(0, 4);
+      rate.textContent = show.rating.average;
+      if (show.rating.average === null) {
+         rate.textContent = 'No-rating';
+      }
+      context.append(card);
+   });
+}
+function getTopRated(shows) {
+   const topRatedShows = shows.filter((show) => show.rating.average >= 8.5);
+   return topRatedShows;
+}
+function getNewestShows(shows) {
+   const newestShows = shows.filter((show) => show.premiered.slice(0, 4) >= 2014);
+   return newestShows;
+}
+
+async function fetchAndShow() {
+   const topRatedScroller = document.querySelector('[data-top-rated-scroller]');
+   const newestScroller = document.querySelector('[data-newest-scroller]');
+
+   const shows = await fetchShows();
+   const topRated = getTopRated(shows);
+   const newest = getNewestShows(shows);
+   createCards(topRated, topRatedScroller);
+   createCards(newest, newestScroller);
+}
+fetchAndShow();

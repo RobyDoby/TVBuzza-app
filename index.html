@@ -31,15 +31,6 @@
                         <a href="" class="nav-list__links">New on TVbase</a>
                      </li>
                   </ul>
-                  <div class="nav-search">
-                     <input
-                        type="search"
-                        name="search"
-                        id="search"
-                        placeholder="search a show..."
-                     />
-                     <label for="search"></label>
-                  </div>
                </div>
             </div>
          </nav>
@@ -146,165 +137,23 @@
 			<section class="scroller-section" aria-label="top-rated-section">
 				<div class="wrapper">
 					<h2 class="section-title c-gradient">Top Rated TV Shows</h2>
-					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller>
-						<button class="media-scroller-arrow c-accent left "><i class="fa-solid fa-angles-left"></i></button>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
+					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-top-rated-scroller>
+						<button class="media-scroller-arrow c-subaccent left "><i class="fa-solid fa-angles-left"></i></button>
+						<template data-media-card-template>
+							<div class="media-element">
+								<img src="" alt="" data-img>
+								<h3 class="media-element-title c-accent" data-name></h3>
+								<div class="media-element-content">
+									<div class="media-element-content-info">
+										<p>Genre: <ul class="media-element-genre c-accent" data-genre></ul></p>
+										<p>Year: <span class="media-element-year c-accent" data-year></span></p>
+										<p>Rate: <span class="media-element-rate c-accent" data-rate></span></p>
+									</div>
+									<button class="btn modalBtn">More info</button>
 								</div>
-								<button class="btn modalBtn">More info</button>
 							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-	
+						</template>
+						
 					<button class="media-scroller-arrow c-accent right "><i class="fa-solid fa-angles-right"></i></button>
 						
 					</div>
@@ -313,154 +162,10 @@
 			<section class="scroller-section bg-gradient" aria-label="newest TV shows">
 				<div class="wrapper">
 					<h2 class="section-title inverted">Newest TV Shows</h2>
-					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller>
-						<button class="media-scroller-arrow c-accent left "><i class="fa-solid fa-angles-left"></i></button>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
-						<div class="media-element">
-							<img src="./image/500171.jpg" alt="">
-							<h3 class="media-element-title c-accent">Title</h3>
-							<div class="media-element-content">
-								<div class="media-element-content-info">
-									<p class="media-element-genre">Genre: <span class=" c-accent">Horror</span></p>
-									<p class="media-element-year">Year: <span class=" c-accent">2002</span></p>
-									<p class="media-element-rate">Rate: <span class=" c-accent">6.4</span></p>
-								</div>
-								<button class="btn modalBtn">More info</button>
-							</div>
-						</div>
+					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-newest-scroller>
+						<button class="media-scroller-arrow c-subaccent left "><i class="fa-solid fa-angles-left"></i></button>
 						
-					<button class="media-scroller-arrow c-accent right "><i class="fa-solid fa-angles-right"></i></button>
+						<button class="media-scroller-arrow c-accent right "><i class="fa-solid fa-angles-right"></i></button>
 						
 					</div>
 				</div>
