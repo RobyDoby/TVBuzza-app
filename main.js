@@ -1,4 +1,152 @@
 const API_URL = 'https://api.tvmaze.com/shows';
+
+async function init() {
+   const tvShows = await fetchShows();
+   getTopRated(tvShows);
+   getNewestShows(tvShows);
+   getFilterShowsArr(tvShows);
+
+   getMediaElementWidth();
+}
+// fetching the data
+
+const fetchShows = async () => {
+   try {
+      const response = await fetch(API_URL);
+      const shows = await response.json();
+      return shows;
+   } catch (err) {
+      console.error(err);
+   }
+};
+
+function createCards(shows, context) {
+   const template = document.querySelector('[data-media-card-template]');
+   shows.forEach((show) => {
+      const card = template.content.cloneNode(true).children[0];
+      let img = card.querySelector('[data-img]');
+      img.setAttribute('loading', 'lazy');
+      let name = card.querySelector('[data-name]');
+      let genre = card.querySelector('[data-genre]');
+      let year = card.querySelector('[data-year]');
+      let rate = card.querySelector('[data-rate]');
+
+      img.src = show.image.medium;
+      img.alt = show.name + 'poster';
+      name.textContent = show.name;
+      if (show.genres.length < 1) {
+         genre.textContent = 'No-genre';
+      } else {
+         show.genres.forEach((showGenre) => {
+            genre.innerHTML += `<li>${showGenre}</li>`;
+         });
+      }
+      year.textContent = show.premiered.slice(0, 4);
+      rate.textContent = show.rating.average;
+      if (show.rating.average === null) {
+         rate.textContent = 'No-rating';
+      }
+      context.append(card);
+   });
+}
+function getTopRated(shows) {
+   const topRatedScroller = document.querySelector('[data-top-rated-scroller]');
+   const topRatedShows = shows.filter((show) => show.rating.average >= 8.5);
+   createCards(topRatedShows, topRatedScroller);
+}
+function getNewestShows(shows) {
+   const newestScroller = document.querySelector('[data-newest-scroller]');
+   const newestShows = shows.filter((show) => show.premiered.slice(0, 4) >= 2014);
+   createCards(newestShows, newestScroller);
+}
+function getFilterShowsArr(shows) {
+   // применение фильтров
+   filteredShows = shows.filter((show) => show.name.length > 1);
+   let numberOfItems = filteredShows.length;
+   let numberOfPages = Math.ceil(numberOfItems / numberPerPage);
+   createPagination(numberOfPages, filteredShows);
+   return filteredShows;
+}
+
+//  pagination
+const paginationList = document.querySelector('.pagination-list');
+const filterElementsContainer = document.querySelector('.filter-elements-list');
+const paginationLeftBtn = document.querySelector('.pagination-arrow-left');
+const paginationRightBtn = document.querySelector('.pagination-arrow-right');
+
+const numberPerPage = 20;
+const currentPage = 1;
+let filteredShows;
+let active;
+
+function createPagination(numberOfPages, showsArray) {
+   let paginationItem = [];
+   for (let i = 1; i <= numberOfPages; i++) {
+      let li = document.createElement('li');
+      li.classList.add('pagination-item');
+      paginationList.append(li);
+      let span = document.createElement('span');
+      span.textContent = i;
+      li.append(span);
+      paginationItem.push(span);
+   }
+   buildPage(paginationItem[0], showsArray);
+
+   for (let item of paginationItem) {
+      item.addEventListener('click', function () {
+         tvShowList.scrollIntoView({ block: 'start', behavior: 'smooth' });
+
+         buildPage(this, showsArray);
+      });
+   }
+}
+function buildPage(item, showsArray) {
+   if (active) {
+      active.classList.remove('active');
+   }
+   active = item;
+   item.classList.add('active');
+
+   let currPage = +item.textContent;
+
+   const trimStart = (currPage - 1) * numberPerPage;
+   const trimEnd = trimStart + numberPerPage;
+   let shows = showsArray.slice(trimStart, trimEnd);
+
+   filterElementsContainer.innerHTML = '';
+   createCards(shows, filterElementsContainer);
+   hideOverPages();
+}
+paginationLeftBtn.addEventListener('click', () => {
+   if (active.parentElement.previousElementSibling) {
+      // let showsArray = указать тут селекторо для выбора всех элементов на странице
+      buildPage(active.parentElement.previousElementSibling.querySelector('span'), filteredShows);
+   }
+   tvShowList.scrollIntoView({ block: 'start', behavior: 'smooth' });
+});
+paginationRightBtn.addEventListener('click', () => {
+   if (active.parentElement.nextElementSibling) {
+      // let showsArray = указать тут селекторо для выбора всех элементов на странице
+      buildPage(active.parentElement.nextElementSibling.querySelector('span'), filteredShows);
+   }
+   tvShowList.scrollIntoView({ block: 'start', behavior: 'smooth' });
+});
+function hideOverPages() {
+   let items = [...paginationList.children];
+   if (items.length > 5) {
+      items.forEach((item) => item.classList.add('hide'));
+      items[0].classList.remove('hide');
+      if (active.parentElement.previousElementSibling) {
+         active.parentElement.previousElementSibling.classList.remove('hide');
+      }
+      active.parentElement.classList.remove('hide');
+      if (active.parentElement.nextElementSibling) {
+         active.parentElement.nextElementSibling.classList.remove('hide');
+      }
+      items[items.length - 1].classList.remove('hide');
+   }
+}
+
 //
 // Hero slider code
 //
@@ -33,12 +181,23 @@ function resumeSliderAutoplay() {
 changeSlide();
 
 //
+// focus state cards code
+//
+let prevEventTarget;
+window.addEventListener('keyup', (e) => {
+   if (e.key === 'Tab' && e.target.classList.contains('modalBtn')) {
+      prevEventTarget?.parentElement.classList.remove('visible');
+      e.target.parentElement.classList.add('visible');
+      prevEventTarget = e.target;
+   }
+});
+
+//
 // media scrollers sections code
 //
 const mediaScrollerLeftBtn = document.querySelectorAll('.media-scroller-arrow.left');
 const mediaScrollerRightBtn = document.querySelectorAll('.media-scroller-arrow.right');
 const mediaScroller = document.querySelector('.media-scroller');
-const mediaElement = document.querySelector('.media-element');
 
 let mediaElementWidth = 0;
 let mediaScrollerWidth = 0;
@@ -46,10 +205,9 @@ let mediaScrollerWidth = 0;
 window.addEventListener('resize', getMediaElementWidth);
 
 function getMediaElementWidth() {
+   const mediaElement = document.querySelector('.media-element');
    mediaElementWidth = mediaElement.offsetWidth;
-   return mediaElementWidth;
 }
-getMediaElementWidth();
 
 mediaScrollerLeftBtn.forEach((btn) => {
    btn.addEventListener('click', scrollLeft);
@@ -73,7 +231,7 @@ function scrollRight(e) {
 //
 const dropdownContentBtns = document.querySelectorAll('.dropdown-content');
 const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-const tvShowList = document.querySelector('.tv-show-list');
+const tvShowList = document.querySelector('.tv-shows-list');
 const filterBtn = document.querySelector('.toggleFilter');
 const filter = document.querySelector('.filter');
 
@@ -152,64 +310,4 @@ function closeModal() {
 
    modal.classList.remove('visible');
 }
-
-// fetching the data
-
-async function fetchShows() {
-   try {
-      const response = await fetch(API_URL);
-      const shows = await response.json();
-      return shows;
-   } catch (err) {
-      console.error(err);
-   }
-}
-function createCards(shows, context) {
-   const template = document.querySelector('[data-media-card-template]');
-   shows.forEach((show) => {
-      const card = template.content.cloneNode(true).children[0];
-      let img = card.querySelector('[data-img]');
-      img.setAttribute('loading', 'lazy');
-      let name = card.querySelector('[data-name]');
-      let genre = card.querySelector('[data-genre]');
-      let year = card.querySelector('[data-year]');
-      let rate = card.querySelector('[data-rate]');
-
-      img.src = show.image.medium;
-      img.alt = show.name + 'poster';
-      name.textContent = show.name;
-      if (show.genres.length < 1) {
-         genre.textContent = 'No-genre';
-      } else {
-         show.genres.forEach((showGenre) => {
-            genre.innerHTML += `<li>${showGenre}</li>`;
-         });
-      }
-      year.textContent = show.premiered.slice(0, 4);
-      rate.textContent = show.rating.average;
-      if (show.rating.average === null) {
-         rate.textContent = 'No-rating';
-      }
-      context.append(card);
-   });
-}
-function getTopRated(shows) {
-   const topRatedShows = shows.filter((show) => show.rating.average >= 8.5);
-   return topRatedShows;
-}
-function getNewestShows(shows) {
-   const newestShows = shows.filter((show) => show.premiered.slice(0, 4) >= 2014);
-   return newestShows;
-}
-
-async function fetchAndShow() {
-   const topRatedScroller = document.querySelector('[data-top-rated-scroller]');
-   const newestScroller = document.querySelector('[data-newest-scroller]');
-
-   const shows = await fetchShows();
-   const topRated = getTopRated(shows);
-   const newest = getNewestShows(shows);
-   createCards(topRated, topRatedScroller);
-   createCards(newest, newestScroller);
-}
-fetchAndShow();
+window.onload = init();
