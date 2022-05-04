@@ -589,7 +589,7 @@ body.modal-opened {
 .filter-pagination {
    position: sticky;
    bottom: 2rem;
-   z-index: 9999;
+   z-index: 9;
 }
 .pagination {
    display: flex;
@@ -680,7 +680,6 @@ body.modal-opened {
    gap: var(--main-spacing);
    position: relative;
    padding: var(--main-spacing);
-   cursor: pointer;
 }
 .news-card-content {
    padding: var(--main-spacing);
@@ -720,6 +719,7 @@ body.modal-opened {
    display: inline-block;
    margin-right: 3rem;
    color: hsl(var(--color-accent));
+   cursor: pointer;
 }
 .news-card-link span {
    position: absolute;
