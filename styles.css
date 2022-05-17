@@ -337,7 +337,7 @@ body.modal-opened {
 }
 .media-element-title {
    line-height: 1.1;
-   max-width: fit-content;
+   max-width: 10ch;
 }
 .media-element-content {
    padding: var(--main-spacing);
