@@ -1,3 +1,7 @@
+@font-face {
+   font-family: 'Magic Romance';
+   src: url(./Mighty\ Kingdom.ttf);
+}
 /* 
 General styles
 */
@@ -28,6 +32,14 @@ html {
 body {
    font-size: clamp(1rem, 10vw, 5rem);
    font-size: var(--fz-content);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-family: 'Magic Romance';
 }
 .wrapper {
    width: min(80%, 100rem);
@@ -400,7 +412,6 @@ body.modal-opened {
    gap: 2em;
 }
 .dropdown-toggle {
-   justify-self: start;
    align-self: start;
 }
 .dropdown-content {
@@ -444,6 +455,9 @@ body.modal-opened {
 
    overflow-y: auto;
    display: none;
+}
+.toggle-genres {
+   border-bottom: 1px solid hsl(var(--color-accent));
 }
 .dropdown-toggle.active .dropdown-list {
    display: block;

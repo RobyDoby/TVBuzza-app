@@ -4,6 +4,9 @@ async function init() {
    const tvShows = await fetchShows();
    getTopRated(tvShows);
    getNewestShows(tvShows);
+
+   let values = getInputValues();
+   fillUpExtra(values);
    getFilterShowsArr(tvShows);
 
    getMediaElementWidth();
@@ -61,7 +64,49 @@ function getNewestShows(shows) {
 }
 function getFilterShowsArr(shows) {
    // применение фильтров
-   filteredShows = shows.filter((show) => show.name.length > 1);
+   let valuesObj = getInputValues();
+   let genresValues = valuesObj.genres;
+   let yearValues = valuesObj.year;
+   let ratingValues = valuesObj.rate;
+   console.log(valuesObj);
+   allShowsContainer = shows;
+
+   filteredByGenre = shows.filter((show) => {
+      if (show.genres.length < 1) {
+         show.genres = ['Without Genres'];
+      }
+      if (strictMode) {
+         return genresValues.every((genre) => {
+            return show.genres.includes(genre);
+         });
+      }
+      return show.genres.some((genreItem) => {
+         return genresValues.includes(genreItem);
+      });
+   });
+   filteredByGenreAndYear = filteredByGenre.filter((show) => {
+      if (yearValues == 'All years') {
+         return show.premiered.slice(0, 4) <= 2020;
+      }
+      if (yearValues == 'before 2000') {
+         return show.premiered.slice(0, 4) < 2000;
+      }
+      return show.premiered.slice(0, 4) == yearValues;
+   });
+   filteredByGenreAndYearAndRate = filteredByGenreAndYear.filter((show) => {
+      if (ratingValues == 'All ratings') {
+         return show.rating.average <= 10;
+      }
+      if (ratingValues == 'less 6') {
+         return show.rating.average < 6;
+      }
+      return show.rating.average >= ratingValues;
+   });
+   filteredShows = filteredByGenreAndYearAndRate;
+   if (!filteredShows) {
+      showError();
+      // создать алерт для отработки ошибок
+   }
    let numberOfItems = filteredShows.length;
    let numberOfPages = Math.ceil(numberOfItems / numberPerPage);
    createPagination(numberOfPages, filteredShows);
@@ -77,9 +122,13 @@ const paginationRightBtn = document.querySelector('.pagination-arrow-right');
 const numberPerPage = 20;
 const currentPage = 1;
 let filteredShows;
+let allShowsContainer;
 let active;
 
 function createPagination(numberOfPages, showsArray) {
+   if ((paginationList.children = !null)) {
+      paginationList.innerHTML = '';
+   }
    let paginationItem = [];
    for (let i = 1; i <= numberOfPages; i++) {
       let li = document.createElement('li');
@@ -119,14 +168,12 @@ function buildPage(item, showsArray) {
 }
 paginationLeftBtn.addEventListener('click', () => {
    if (active.parentElement.previousElementSibling) {
-      // let showsArray = указать тут селекторо для выбора всех элементов на странице
       buildPage(active.parentElement.previousElementSibling.querySelector('span'), filteredShows);
    }
    tvShowList.scrollIntoView({ block: 'start', behavior: 'smooth' });
 });
 paginationRightBtn.addEventListener('click', () => {
    if (active.parentElement.nextElementSibling) {
-      // let showsArray = указать тут селекторо для выбора всех элементов на странице
       buildPage(active.parentElement.nextElementSibling.querySelector('span'), filteredShows);
    }
    tvShowList.scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -227,13 +274,19 @@ function scrollRight(e) {
 }
 
 //
-//  code for toggle filter dropdowns
+//  code for filter dropdowns
 //
 const dropdownContentBtns = document.querySelectorAll('.dropdown-content');
 const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+const genresList = document.querySelector('.genres-list');
+const dropdownLists = document.querySelectorAll('.dropdown-list');
+const genresCheckedToggleBtn = document.querySelector('.toggle-genres');
 const tvShowList = document.querySelector('.tv-shows-list');
 const filterBtn = document.querySelector('.toggleFilter');
 const filter = document.querySelector('.filter');
+const strictModeToggler = document.querySelector('.strict-mode-toggler');
+const applyFilterBtn = document.querySelector('.apply-filter');
+let strictMode = false;
 
 // toggle filter
 filterBtn.addEventListener('click', () => {
@@ -248,7 +301,92 @@ tvShowList.addEventListener('click', function (e) {
    });
    e.stopPropagation();
 });
+dropdownLists.forEach((list) => {
+   list.addEventListener('click', (e) => {
+      if (
+         e.target.parentElement.classList.contains('dropdown-list-item') ||
+         e.target.parentElement.classList.contains('dropdown-label')
+      ) {
+         let values = getInputValues();
+         fillUpExtra(values);
+         e.stopPropagation();
+      }
+   });
+});
+strictModeToggler.addEventListener('click', (e) => {
+   if (
+      e.target.parentElement.classList.contains('strict-mode-label') ||
+      e.target.parentElement.classList.contains('dropdown-label-check-icon')
+   ) {
+      if (strictMode === false) {
+         strictMode = true;
+         return;
+      }
+      strictMode = false;
+      e.stopPropagation();
+   }
+});
+applyFilterBtn.addEventListener('click', () => {
+   getFilterShowsArr(allShowsContainer);
+});
+genresCheckedToggleBtn.addEventListener('click', () => {
+   toggleGenresCheckState();
+   if (genresCheckedToggleBtn.textContent.toLowerCase() == 'uncheck all') {
+      genresCheckedToggleBtn.textContent = 'Check All';
+   } else {
+      genresCheckedToggleBtn.textContent = 'Uncheck All';
+   }
+});
+function toggleGenresCheckState() {
+   let genresInputs = genresList.querySelectorAll('[data-genre-input]');
 
+   genresInputs.forEach((input) => {
+      if (genresCheckedToggleBtn.textContent.toLowerCase() == 'check all') {
+         input.checked = true;
+      } else {
+         input.checked = false;
+      }
+   });
+}
+function getInputValues() {
+   let values = {
+      genres: [],
+   };
+   let genresDropdown = document.querySelector('.genres-dropdown');
+   let genresInputs = genresDropdown.querySelectorAll('input:checked');
+   genresInputs.forEach((input) => {
+      values.genres.push(input.nextElementSibling.textContent);
+   });
+   let yearDropdown = document.querySelector('.years-dropdown');
+   let yearInputs = yearDropdown.querySelectorAll('input:checked');
+   yearInputs.forEach((input) => {
+      values.year = [input.nextElementSibling.dataset.year];
+   });
+   let ratingDropdown = document.querySelector('.rating-dropdown');
+   let ratingInputs = ratingDropdown.querySelectorAll('input:checked');
+   ratingInputs.forEach((input) => {
+      values.rate = [input.nextElementSibling.dataset.rate];
+   });
+   if (values.genres.length < 1) {
+      values.genres.push('No choosen genres');
+   }
+   return values;
+}
+function fillUpExtra(valuesObj) {
+   let genresDropdown = document.querySelector('.genres-dropdown');
+   let yearDropdown = document.querySelector('.years-dropdown');
+   let ratingDropdown = document.querySelector('.rating-dropdown');
+
+   genresDropdown.querySelector('.dropdown-content-extra').textContent = valuesObj.genres
+      .toString()
+      .replaceAll(',', ', ');
+   yearDropdown.querySelector('.dropdown-content-extra').textContent = valuesObj.year;
+   if (valuesObj.rate == 'less 6' || valuesObj.rate == 'All ratings') {
+      ratingDropdown.querySelector('.dropdown-content-extra').textContent = valuesObj.rate;
+   } else {
+      ratingDropdown.querySelector('.dropdown-content-extra').textContent = `${valuesObj.rate}+`;
+   }
+}
 // toggle dropdowns lists
 dropdownContentBtns.forEach((btn) => {
    btn.addEventListener('click', (e) => {
