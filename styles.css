@@ -1,6 +1,10 @@
 @font-face {
-   font-family: 'Magic Romance';
-   src: url(./Mighty\ Kingdom.ttf);
+   font-family: 'Mummy';
+   src: url(./fonts/Gloomy\ Mummy.ttf);
+}
+@font-face {
+   font-family: 'Rondalo';
+   src: url(./fonts/RONDALO_.TTF);
 }
 /* 
 General styles
@@ -8,7 +12,7 @@ General styles
 :root {
    --fz-main-title: 3rem;
    --fz-subtitles: 2rem;
-   --fz-content: 1.25rem;
+   --fz-content: 1.35rem;
 
    --main-color: 0 0% 100%;
    --main-color-dark-100: 0 0% 30%;
@@ -26,7 +30,7 @@ body,
 html {
    min-height: 100vh;
    width: 100%;
-   font-family: Poppins, sans-serif;
+   font-family: 'Rondalo', sans-serif;
    color: hsl(var(--main-color));
 }
 body {
@@ -34,12 +38,14 @@ body {
    font-size: var(--fz-content);
 }
 h1,
-h2,
+h2 {
+   font-family: 'Mummy', serif;
+}
 h3,
 h4,
 h5,
 h6 {
-   font-family: 'Magic Romance';
+   font-family: 'Rondalo', sans-serif;
 }
 .wrapper {
    width: min(80%, 100rem);
@@ -313,6 +319,7 @@ body.modal-opened {
 .media-element {
    display: grid;
    grid-template-rows: min-content;
+   justify-self: flex-start;
    gap: var(--main-spacing);
    position: relative;
    padding: var(--main-spacing);
@@ -323,12 +330,14 @@ body.modal-opened {
    border-radius: var(--border-radius-main);
 }
 .media-element > img {
+   max-width: fit-content;
    width: 100%;
    aspect-ratio: 2 / 3;
    object-fit: cover;
 }
 .media-element-title {
    line-height: 1.1;
+   max-width: fit-content;
 }
 .media-element-content {
    padding: var(--main-spacing);
@@ -593,9 +602,9 @@ body.modal-opened {
 }
 .filter-elements-list {
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(15rem, auto));
    gap: var(--main-spacing);
-   justify-content: center;
+   justify-content: flex-start;
    padding: var(--main-spacing);
    border-radius: var(--border-radius-main);
 }
