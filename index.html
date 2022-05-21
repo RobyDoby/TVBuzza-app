@@ -25,10 +25,11 @@
                      <img src="./image/tvbuzzalogo.png" alt="tvbuzza logo" />
                   </div>
                   <ul class="nav-list" role="list">
-                     <li class="nav-list__item"><a href="" class="nav-list__links">Home</a></li>
-                     <li class="nav-list__item"><a href="" class="nav-list__links">TV Shows</a></li>
+                     <li class="nav-list__item"><a href="#top-rated" class="nav-list__links">Top Rated</a></li>
+                     <li class="nav-list__item"><a href="#newest" class="nav-list__links">Newest Shows</a></li>
+                     <li class="nav-list__item"><a href="#filter-section" class="nav-list__links">Choose Your Show</a></li>
                      <li class="nav-list__item">
-                        <a href="" class="nav-list__links">New on TVbase</a>
+                        <a href="#news" class="nav-list__links">Shows news</a>
                      </li>
                   </ul>
                </div>
@@ -37,7 +38,7 @@
          <section class="hero">
             <div class="wrapper">
                <div class="hero-text">
-                  <h1>Welcome on TVbase!</h1>
+                  <h1>Welcome to TVbuzza!</h1>
                   <p>Popular, modern database of TV Shows</p>
                </div>
                <div class="hero-slider">
@@ -77,6 +78,11 @@
             </div>
          </section>
       </header>
+		<div class="go-up-btn-container">
+			<div class="go-up-btn btn">
+				<i class="fa-solid fa-arrow-up-long"></i>
+			</div>
+		</div>
       <main class="main">
          <section class="about">
             <div class="wrapper">
@@ -134,7 +140,7 @@
 					</div>
 				</div>
 			</div>
-			<section class="scroller-section" aria-label="top-rated-section">
+			<section class="scroller-section" aria-label="top-rated-section" id="top-rated">
 				<div class="wrapper">
 					<h2 class="section-title c-gradient">Top Rated TV Shows</h2>
 					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-top-rated-scroller>
@@ -159,7 +165,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="scroller-section" aria-label="newest TV shows">
+			<section class="scroller-section" aria-label="newest TV shows" id="newest">
 				<div class="wrapper">
 					<h2 class="section-title c-gradient">Newest TV Shows</h2>
 					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-newest-scroller>
@@ -174,7 +180,7 @@
 			<!-- filter section -->
 
 
-			<section class="tv-shows-list" aria-label="tv-show list">
+			<section class="tv-shows-list" aria-label="tv-show list" id="filter-section">
 				<div class="wrapper">
 					<h2 class="section-title c-gradient">Choose your show</h2>
 					<button class="toggleFilter btn">Filter</button>
@@ -665,7 +671,7 @@
 						
 					</div>
 			</section>
-			<section class="news">
+			<section class="news" id="news">
 				<div class="wrapper">
 					<h2 class="section-title c-gradient">TV Shows News</h2>
 					<div class="news-container">

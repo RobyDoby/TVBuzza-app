@@ -32,6 +32,7 @@ html {
    width: 100%;
    font-family: 'Rondalo', sans-serif;
    color: hsl(var(--main-color));
+   /* scroll-behavior: smooth; */
 }
 body {
    font-size: clamp(1rem, 10vw, 5rem);
@@ -107,6 +108,8 @@ nav {
    width: 100%;
    background: hsl(var(--main-color-dark-400));
    padding: 0;
+   position: relative;
+   z-index: 800;
 }
 .nav-container {
    display: flex;
@@ -211,7 +214,29 @@ main section styles
    position: relative;
    z-index: 2;
 }
-
+/* go up btn */
+.go-up-btn-container {
+   position: absolute;
+   inset: 0;
+   z-index: 100;
+   pointer-events: all;
+}
+.go-up-btn {
+   position: fixed;
+   bottom: 1rem;
+   right: 1rem;
+   background-color: hsl(var(--color-accent));
+   padding: 1rem;
+   opacity: 0;
+   transition: opacity 300ms ease-in-out;
+}
+.go-up-btn.active {
+   opacity: 1;
+}
+.go-up-btn:hover,
+.go-up-btn:focus-within {
+   background-color: hsl(var(--accent-subcolor));
+}
 /* modal */
 .modal {
    position: fixed;
@@ -305,21 +330,22 @@ body.modal-opened {
    padding: var(--main-spacing);
 
    overflow-x: auto;
+   overflow-y: hidden;
    /* overflow: hidden; */
    overscroll-behavior-inline: contain;
 }
 
 .snaps-inline {
    scroll-snap-type: inline mandatory;
+   scroll-behavior: smooth;
 }
 .snaps-inline > * {
    scroll-snap-align: start;
-   scroll-margin-left: var(--border-radius-main);
+   scroll-margin-left: var(--main-spacing);
 }
 .media-element {
    display: grid;
    grid-template-rows: min-content;
-   justify-self: flex-start;
    gap: var(--main-spacing);
    position: relative;
    padding: var(--main-spacing);
@@ -330,7 +356,6 @@ body.modal-opened {
    border-radius: var(--border-radius-main);
 }
 .media-element > img {
-   max-width: fit-content;
    width: 100%;
    aspect-ratio: 2 / 3;
    object-fit: cover;

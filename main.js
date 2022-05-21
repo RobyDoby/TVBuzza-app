@@ -68,7 +68,7 @@ function getFilterShowsArr(shows) {
    let genresValues = valuesObj.genres;
    let yearValues = valuesObj.year;
    let ratingValues = valuesObj.rate;
-   console.log(valuesObj);
+
    allShowsContainer = shows;
 
    filteredByGenre = shows.filter((show) => {
@@ -286,6 +286,7 @@ const filterBtn = document.querySelector('.toggleFilter');
 const filter = document.querySelector('.filter');
 const strictModeToggler = document.querySelector('.strict-mode-toggler');
 const applyFilterBtn = document.querySelector('.apply-filter');
+const clearFilterBtn = document.querySelector('.clear-filter');
 let strictMode = false;
 
 // toggle filter
@@ -326,9 +327,28 @@ strictModeToggler.addEventListener('click', (e) => {
       e.stopPropagation();
    }
 });
+// apply filter settings
 applyFilterBtn.addEventListener('click', () => {
    getFilterShowsArr(allShowsContainer);
 });
+// clear filter settings
+clearFilterBtn.addEventListener('click', () => {
+   let genresInputs = genresList.querySelectorAll('[data-genre-input]');
+   genresInputs.forEach((input) => {
+      input.checked = false;
+   });
+   genresCheckedToggleBtn.textContent = 'Check All';
+   let yearInput = document.querySelector("[data-year='All years']");
+   yearInput.previousElementSibling.checked = 'true';
+   let rateInput = document.querySelector("[data-rate='All ratings']");
+   rateInput.previousElementSibling.checked = 'true';
+   strictMode = false;
+   let strictModeBtn = document.querySelector('#strictModeBtn');
+   strictModeBtn.checked = false;
+   let values = getInputValues();
+   fillUpExtra(values);
+});
+// toggle genre inputs checked state
 genresCheckedToggleBtn.addEventListener('click', () => {
    toggleGenresCheckState();
    if (genresCheckedToggleBtn.textContent.toLowerCase() == 'uncheck all') {
@@ -448,4 +468,20 @@ function closeModal() {
 
    modal.classList.remove('visible');
 }
-window.onload = init();
+// go up btn
+const goUpBtn = document.querySelector('.go-up-btn');
+// сделать функцию фротл или дебаунс
+goUpBtn.addEventListener('click', () => {
+   window.scrollTo(0, 0);
+});
+
+window.addEventListener('scroll', (e) => {
+   let verticalScroll = window.scrollY;
+   if (verticalScroll > 400) {
+      goUpBtn.classList.add('active');
+   } else {
+      goUpBtn.classList.remove('active');
+   }
+});
+
+window.addEventListener('DOMContentLoaded', init);
