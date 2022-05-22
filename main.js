@@ -10,6 +10,8 @@ async function init() {
    getFilterShowsArr(tvShows);
 
    getMediaElementWidth();
+
+   window.addEventListener('scroll', throttle(getWindowScroll, 1000));
 }
 // fetching the data
 
@@ -103,16 +105,24 @@ function getFilterShowsArr(shows) {
       return show.rating.average >= ratingValues;
    });
    filteredShows = filteredByGenreAndYearAndRate;
-   if (!filteredShows) {
-      showError();
-      // создать алерт для отработки ошибок
+   if (filteredShows.length < 1) {
+      showFilterError();
+      return;
    }
    let numberOfItems = filteredShows.length;
    let numberOfPages = Math.ceil(numberOfItems / numberPerPage);
    createPagination(numberOfPages, filteredShows);
    return filteredShows;
 }
-
+function showFilterError() {
+   let error = document.createElement('div');
+   error.classList.add('filter-error');
+   error.textContent = 'There are no shows matching specified criteria...';
+   filterElementsContainer.insertAdjacentElement('beforebegin', error);
+   setTimeout(() => {
+      error.remove();
+   }, 3000);
+}
 //  pagination
 const paginationList = document.querySelector('.pagination-list');
 const filterElementsContainer = document.querySelector('.filter-elements-list');
@@ -199,6 +209,8 @@ function hideOverPages() {
 //
 const slider = document.querySelector('.hero-slider');
 const sliderCards = document.querySelector('.hero-slider-cards');
+let sliderCardsStyles = window.getComputedStyle(sliderCards);
+let gap = parseInt(sliderCardsStyles.getPropertyValue('gap'));
 let slideWidth;
 let stopSlideChange;
 
@@ -208,8 +220,12 @@ sliderCards.addEventListener('transitionend', moveSlide, false);
 
 function changeSlide() {
    stopSlideChange = setInterval(() => {
-      sliderCards.style.transform = `translate(-100%)`;
-   }, 5000);
+      let sliderCard = document.querySelector('.hero-slider-card');
+      slideWidth = sliderCard.clientWidth;
+      let translateValue = -slideWidth - gap;
+      console.log(translateValue);
+      sliderCards.style.transform = `translate(${translateValue}px)`;
+   }, 3000);
 }
 function moveSlide() {
    sliderCards.append(sliderCards.firstElementChild);
@@ -226,18 +242,6 @@ function resumeSliderAutoplay() {
    changeSlide();
 }
 changeSlide();
-
-//
-// focus state cards code
-//
-let prevEventTarget;
-window.addEventListener('keyup', (e) => {
-   if (e.key === 'Tab' && e.target.classList.contains('modalBtn')) {
-      prevEventTarget?.parentElement.classList.remove('visible');
-      e.target.parentElement.classList.add('visible');
-      prevEventTarget = e.target;
-   }
-});
 
 //
 // media scrollers sections code
@@ -453,6 +457,8 @@ modalCloseBtn.addEventListener('click', closeModal);
 function openModal(e) {
    if (e.target.classList.contains('modalBtn')) {
       body.classList.add('modal-opened');
+      document.documentElement.classList.add('behavior-instant');
+
       body.style.top = `-${window.scrollY}px`;
       body.style.position = 'fixed';
 
@@ -467,6 +473,9 @@ function closeModal() {
    window.scrollTo(0, parseInt(scrollVertical || '0') * -1);
 
    modal.classList.remove('visible');
+   setTimeout(() => {
+      document.documentElement.classList.remove('behavior-instant');
+   }, 500);
 }
 // go up btn
 const goUpBtn = document.querySelector('.go-up-btn');
@@ -475,13 +484,35 @@ goUpBtn.addEventListener('click', () => {
    window.scrollTo(0, 0);
 });
 
-window.addEventListener('scroll', (e) => {
+const throttle = (func, delay) => {
+   let shouldWait = false;
+   let lastValue;
+   const timeoutFunc = () => {
+      if (lastValue == null) {
+         shouldWait = false;
+      } else {
+         func(...lastValue);
+         lastValue = null;
+         setTimeout(timeoutFunc, delay);
+      }
+   };
+   return (...args) => {
+      if (shouldWait) {
+         lastValue = args;
+         return;
+      }
+
+      func(...args);
+      shouldWait = true;
+      setTimeout(timeoutFunc, delay);
+   };
+};
+function getWindowScroll() {
    let verticalScroll = window.scrollY;
    if (verticalScroll > 400) {
       goUpBtn.classList.add('active');
-   } else {
-      goUpBtn.classList.remove('active');
+      return;
    }
-});
-
+   goUpBtn.classList.remove('active');
+}
 window.addEventListener('DOMContentLoaded', init);
