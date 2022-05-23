@@ -31,13 +31,16 @@ function createCards(shows, context) {
       const card = template.content.cloneNode(true).children[0];
       let img = card.querySelector('[data-img]');
       img.setAttribute('loading', 'lazy');
+      let mediaElem = card.querySelector('[media-element]');
       let name = card.querySelector('[data-name]');
       let genre = card.querySelector('[data-genre]');
       let year = card.querySelector('[data-year]');
       let rate = card.querySelector('[data-rate]');
 
+      let id = show.id;
+      card.dataset.id = `${id}`;
       img.src = show.image.medium;
-      img.alt = show.name + 'poster';
+      img.alt = show.name + ' poster';
       name.textContent = show.name;
       if (show.genres.length < 1) {
          genre.textContent = 'No-genre';
@@ -223,7 +226,6 @@ function changeSlide() {
       let sliderCard = document.querySelector('.hero-slider-card');
       slideWidth = sliderCard.clientWidth;
       let translateValue = -slideWidth - gap;
-      console.log(translateValue);
       sliderCards.style.transform = `translate(${translateValue}px)`;
    }, 3000);
 }
@@ -438,7 +440,16 @@ function hideActiveDropdowns() {
 //
 const modal = document.querySelector('.modal');
 const body = document.body;
+
 const modalContent = document.querySelector('.modal-content');
+let modalImg = modalContent.querySelector('img');
+let modalTitle = modalContent.querySelector('#tvTitle');
+let modalYear = modalContent.querySelector('#tvYear');
+let modalGenres = modalContent.querySelector('#tvGenres');
+let modalCountry = modalContent.querySelector('#tvCountry');
+let modalStatus = modalContent.querySelector('#tvStatus');
+let modalRate = modalContent.querySelector('#tvRate');
+let modalDesc = modalContent.querySelector('#tvDesc');
 const mediaElementsParents = document.querySelectorAll('.media-element-parent');
 const modalCloseBtn = document.querySelector('.modal-close-icon');
 
@@ -456,8 +467,10 @@ modalCloseBtn.addEventListener('click', closeModal);
 
 function openModal(e) {
    if (e.target.classList.contains('modalBtn')) {
+      let id = e.target.closest('.media-element').dataset.id;
       body.classList.add('modal-opened');
       document.documentElement.classList.add('behavior-instant');
+      fillUpModalInfo(id);
 
       body.style.top = `-${window.scrollY}px`;
       body.style.position = 'fixed';
@@ -476,6 +489,45 @@ function closeModal() {
    setTimeout(() => {
       document.documentElement.classList.remove('behavior-instant');
    }, 500);
+}
+function fillUpModalInfo(showId) {
+   let showPosition = binarySearchShow(allShowsContainer, showId);
+   let showData = allShowsContainer[showPosition];
+   console.log(showData);
+   modalImg.src = showData.image.original;
+   modalTitle.textContent = showData.name;
+   modalYear.textContent = showData.premiered.slice(0, 4);
+   if (showData.genres.length < 1) {
+      modalGenres.textContent = 'No genre';
+   } else {
+      modalGenres.textContent = showData.genres.toString().replaceAll(',', ', ');
+   }
+   modalCountry.textContent = showData.network.country.name;
+   modalStatus.textContent = showData.status;
+   if (showData.rating.average === null) {
+      modalRate.textContent = 'No rating';
+   } else {
+      modalRate.textContent = showData.rating.average;
+   }
+   modalDesc.innerHTML = showData.summary;
+}
+function binarySearchShow(showsList, showId) {
+   let start = 0;
+   let end = showsList.length - 1;
+   let mid;
+   showId = parseInt(showId);
+
+   while (start <= end) {
+      mid = Math.round((end - start) / 2) + start;
+      if (showId == showsList[mid].id) {
+         return mid;
+      } else if (showId < showsList[mid].id) {
+         end = mid - 1;
+      } else {
+         start = mid + 1;
+      }
+   }
+   return -1;
 }
 // go up btn
 const goUpBtn = document.querySelector('.go-up-btn');
@@ -515,4 +567,4 @@ function getWindowScroll() {
    }
    goUpBtn.classList.remove('active');
 }
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('load', init);

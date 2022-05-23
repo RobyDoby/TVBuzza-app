@@ -289,7 +289,7 @@ main section styles
 }
 .modal-content {
    max-width: 1500px;
-   width: 80%;
+   width: 60%;
    height: 100%;
    padding: var(--main-spacing);
 
@@ -317,6 +317,9 @@ main section styles
 }
 .modal-content-third {
    grid-column: 1 / span 2;
+   max-width: 45ch;
+   /* text-align: center;
+   margin: 0 auto; */
 }
 .modal-content-close-btn {
    position: absolute;

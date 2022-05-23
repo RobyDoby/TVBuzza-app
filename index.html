@@ -120,15 +120,16 @@
 				<div class="modal-content">
 					<div class="modal-content-container">
 						<div class="modal-content-primary">
-							<img src="./image/500171.jpg" alt="" id="tvPoster">
+							<img src="./image/GoT.jpg" alt="" id="tvPoster">
 						</div>
 						<div class="modal-content-secondary">
-							<h2 id="tvTitle" class="c-gradient">Title Lorem ipsum, dolor sit amet</h2>
-							<p>Year: <span id="tvYear" class="c-accent">1990</span></p>
-							<p>Genres: <span id="tvGenres" class="c-accent">Horror, mystery, thriller</span></p>
-							<p>Seasons: <span id="tvSeasons" class="c-accent">3</span></p>
-							<p>Status: <span id="tvStatus" class="c-accent">end</span></p>
-							<p id="tvRate" class="tvRate c-accent">7.5
+							<h2 id="tvTitle" class="c-gradient"></h2>
+							<p>Year: <span id="tvYear" class="c-accent"></span></p>
+							<p>Genres: <span id="tvGenres" class="c-accent"></span></p>
+							<p>Country: <span id="tvCountry" class="c-accent"></span></p>
+							<p>Status: <span id="tvStatus" class="c-accent"></span></p>
+							<p class="tvRate c-accent">
+								<span id="tvRate"></span>
 								<span class="rate-stars">
 									<i class="fa-solid fa-star"></i>
 									<i class="fa-solid fa-star"></i>
@@ -144,8 +145,7 @@
 							</p>
 						</div>
 						<div class="modal-content-third">
-							<p id="tvDesc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda consequuntur possimus tempora, modi dolorum voluptatem eum hic iure? Quo repellendus nam, animi aliquam tenetur hic ducimus voluptatibus facere? Porro, fugiat?
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti maiores accusantium quis tenetur vel facere, laboriosam dolore eaque laborum minus.
+							<p id="tvDesc">
 							</p>
 						</div>
 						<div class="modal-content-close-btn">
@@ -159,8 +159,8 @@
 					<h2 class="section-title c-gradient">Top Rated TV Shows</h2>
 					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-top-rated-scroller>
 						<button class="media-scroller-arrow c-accent left "><i class="fa-solid fa-angles-left"></i></button>
-						<template data-media-card-template>
-							<div class="media-element">
+						<template data-media-card-template aria-hidden="true">
+							<div class="media-element" data-media-element>
 								<img src="" alt="" data-img>
 								<h3 class="media-element-title c-accent" data-name></h3>
 								<div class="media-element-content">
