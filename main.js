@@ -212,13 +212,18 @@ function hideOverPages() {
 //
 const slider = document.querySelector('.hero-slider');
 const sliderCards = document.querySelector('.hero-slider-cards');
+const sliderCardsList = document.querySelectorAll('.hero-slider-card');
 let sliderCardsStyles = window.getComputedStyle(sliderCards);
 let gap = parseInt(sliderCardsStyles.getPropertyValue('gap'));
 let slideWidth;
 let stopSlideChange;
 
-slider.addEventListener('mouseover', stopSliderAutoplay);
-slider.addEventListener('mouseout', resumeSliderAutoplay);
+sliderCardsList.forEach((card) => {
+   card.addEventListener('mouseover', stopSliderAutoplay);
+});
+sliderCardsList.forEach((card) => {
+   card.addEventListener('mouseout', resumeSliderAutoplay);
+});
 sliderCards.addEventListener('transitionend', moveSlide, false);
 
 function changeSlide() {
