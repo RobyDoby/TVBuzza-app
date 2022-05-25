@@ -102,8 +102,11 @@ function getFilterShowsArr(shows) {
       if (ratingValues == 'All ratings') {
          return show.rating.average <= 10;
       }
-      if (ratingValues == 'less 6') {
+      if (ratingValues == 'Less 6') {
          return show.rating.average < 6;
+      }
+      if (ratingValues == 'No rating') {
+         return show.rating.average == null;
       }
       return show.rating.average >= ratingValues;
    });
@@ -412,7 +415,11 @@ function fillUpExtra(valuesObj) {
       .toString()
       .replaceAll(',', ', ');
    yearDropdown.querySelector('.dropdown-content-extra').textContent = valuesObj.year;
-   if (valuesObj.rate == 'less 6' || valuesObj.rate == 'All ratings') {
+   if (
+      valuesObj.rate == 'Less 6' ||
+      valuesObj.rate == 'All ratings' ||
+      valuesObj.rate == 'No rating'
+   ) {
       ratingDropdown.querySelector('.dropdown-content-extra').textContent = valuesObj.rate;
    } else {
       ratingDropdown.querySelector('.dropdown-content-extra').textContent = `${valuesObj.rate}+`;
@@ -453,7 +460,9 @@ let modalYear = modalContent.querySelector('#tvYear');
 let modalGenres = modalContent.querySelector('#tvGenres');
 let modalCountry = modalContent.querySelector('#tvCountry');
 let modalStatus = modalContent.querySelector('#tvStatus');
-let modalRate = modalContent.querySelector('#tvRate');
+let modalRating = modalContent.querySelector('.tvRating');
+let ratingActive = modalRating.querySelector('.rating-active');
+let ratingValue = modalRating.querySelector('.rating-value');
 let modalDesc = modalContent.querySelector('#tvDesc');
 const mediaElementsParents = document.querySelectorAll('.media-element-parent');
 const modalCloseBtn = document.querySelector('.modal-close-icon');
@@ -509,12 +518,22 @@ function fillUpModalInfo(showId) {
    }
    modalCountry.textContent = showData.network.country.name;
    modalStatus.textContent = showData.status;
-   if (showData.rating.average === null) {
-      modalRate.textContent = 'No rating';
+   let rate = getShowRating(showData.rating.average);
+   if (rate === -1) {
+      ratingValue.textContent = 'No rating';
    } else {
-      modalRate.textContent = showData.rating.average;
+      ratingValue.textContent = rate;
    }
    modalDesc.innerHTML = showData.summary;
+}
+function getShowRating(showRating) {
+   console.log(showRating);
+   if (showRating === null) {
+      return -1;
+   }
+   let ratingActiveWidth = showRating / 0.1;
+   ratingActive.style.width = `${ratingActiveWidth}%`;
+   return showRating;
 }
 function binarySearchShow(showsList, showId) {
    let start = 0;

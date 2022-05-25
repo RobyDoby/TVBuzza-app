@@ -128,21 +128,12 @@
 							<p>Genres: <span id="tvGenres" class="c-accent"></span></p>
 							<p>Country: <span id="tvCountry" class="c-accent"></span></p>
 							<p>Status: <span id="tvStatus" class="c-accent"></span></p>
-							<p class="tvRate c-accent">
-								<span id="tvRate"></span>
-								<span class="rate-stars">
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-									<i class="fa-solid fa-star"></i>
-								</span>
-							</p>
+							<div class="tvRating">
+								<div class="rating-body">
+									<div class="rating-active"></div>
+								</div>
+								<div class="rating-value c-accent"></div>
+							</div>
 						</div>
 						<div class="modal-content-third">
 							<p id="tvDesc">
@@ -605,7 +596,16 @@
 									<li class="dropdown-list-item">
 										<label class="dropdown-label">
 											<input type="radio" name="rating">
-											<div class="dropdown-label-text" data-rate="less 6">&lt;6</div>
+											<div class="dropdown-label-text" data-rate='No rating'>No rating</div>
+											<div class="dropdown-label-check-icon ">
+												<i class="fa-solid fa-check"></i>
+											</div>
+										</label>
+									</li>
+									<li class="dropdown-list-item">
+										<label class="dropdown-label">
+											<input type="radio" name="rating">
+											<div class="dropdown-label-text" data-rate="Less 6">&lt;6</div>
 											<div class="dropdown-label-check-icon ">
 												<i class="fa-solid fa-check"></i>
 											</div>

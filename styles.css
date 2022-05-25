@@ -252,6 +252,7 @@ main section styles
    opacity: 0;
    transition: opacity 300ms ease-in-out;
    z-index: 9999;
+   transition: 300ms ease;
 }
 .go-up-btn.active {
    opacity: 1;
@@ -308,8 +309,37 @@ main section styles
 .modal-content-primary > img {
    width: 100%;
 }
-.tvRate {
-   font-size: 1.5rem;
+.tvRating {
+   display: flex;
+   align-items: flex-end;
+   font-size: var(--fz-subtitles);
+}
+.rating-body {
+   position: relative;
+}
+.rating-body::before {
+   content: '★★★★★★★★★★';
+   display: block;
+}
+.rating-active {
+   position: absolute;
+   width: 0;
+   height: 100%;
+   top: 0;
+   left: 0;
+   overflow: hidden;
+   color: hsl(var(--color-accent));
+}
+.rating-active::before {
+   content: '★★★★★★★★★★';
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+}
+.rating-value {
+   padding-left: var(--main-spacing);
 }
 .modal-content-secondary {
    display: flex;
