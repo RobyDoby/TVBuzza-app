@@ -3,6 +3,10 @@
    src: url(./fonts/Gloomy\ Mummy.ttf);
 }
 @font-face {
+   font-family: 'Italiano';
+   src: url(./fonts/Itali___.ttf);
+}
+@font-face {
    font-family: 'Rondalo';
    src: url(./fonts/RONDALO_.TTF);
 }
@@ -29,7 +33,7 @@ body,
 html {
    min-height: 100vh;
    width: 100%;
-   font-family: 'Rondalo', sans-serif;
+   font-family: 'Rondalo', cursive;
    color: hsl(var(--main-color));
    scroll-behavior: smooth;
 }
@@ -48,7 +52,7 @@ h3,
 h4,
 h5,
 h6 {
-   font-family: 'Rondalo', sans-serif;
+   font-family: 'Rondalo', cursive;
 }
 .wrapper {
    width: min(80%, 100rem);
@@ -95,6 +99,7 @@ section {
    transition: 150ms ease-in-out;
    cursor: pointer;
    background-color: hsl(var(--main-color));
+   font-family: 'Italiano', sans-serif;
 }
 .btn:hover,
 .btn:focus-within {
@@ -235,6 +240,9 @@ main section styles
    max-width: 60ch;
    position: relative;
    z-index: 2;
+}
+.about-desc:not(:last-of-type) {
+   margin-bottom: var(--main-spacing);
 }
 /* go up btn */
 .go-up-btn-container {
