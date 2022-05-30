@@ -13,6 +13,29 @@ async function init() {
 
    window.addEventListener('scroll', throttle(getWindowScroll, 1000));
 }
+const throttle = (func, delay) => {
+   let shouldWait = false;
+   let lastValue;
+   const timeoutFunc = () => {
+      if (lastValue == null) {
+         shouldWait = false;
+      } else {
+         func(...lastValue);
+         lastValue = null;
+         setTimeout(timeoutFunc, delay);
+      }
+   };
+   return (...args) => {
+      if (shouldWait) {
+         lastValue = args;
+         return;
+      }
+
+      func(...args);
+      shouldWait = true;
+      setTimeout(timeoutFunc, delay);
+   };
+};
 // fetching the data
 
 const fetchShows = async () => {
@@ -262,6 +285,22 @@ changeSlide();
 const mediaScrollerLeftBtn = document.querySelectorAll('.media-scroller-arrow.left');
 const mediaScrollerRightBtn = document.querySelectorAll('.media-scroller-arrow.right');
 const mediaScrollerContainer = document.querySelector('.scroller-container');
+const scrollerSections = document.querySelectorAll('.scroller-section');
+
+scrollerSections.forEach((section) => {
+   section.addEventListener('mouseover', throttle(showProgressBar, 1000));
+
+   function showProgressBar() {
+      section.querySelector('.scroller-progress-bar').classList.add('active');
+   }
+});
+scrollerSections.forEach((section) => {
+   section.addEventListener('mouseleave', throttle(hideProgressBar, 1000));
+
+   function hideProgressBar() {
+      section.querySelector('.scroller-progress-bar').classList.remove('active');
+   }
+});
 
 window.addEventListener('resize', getMediaElementWidth);
 
@@ -280,8 +319,18 @@ function scrollLeft(e) {
    let closestScroller = e.target
       .closest('[data-scroller-container]')
       .querySelector('.media-scroller');
+
    let slideIndex = parseInt(getComputedStyle(closestScroller).getPropertyValue('--slide-index'));
+   let itemsPerScreen = parseInt(
+      getComputedStyle(document.body).getPropertyValue('--items-per-screen')
+   );
+   let closestProgressBar = e.target.closest('.wrapper').querySelector('.scroller-progress-bar');
+   closestProgressBar.textContent = `${itemsPerScreen * slideIndex} / ${
+      closestScroller.children.length - 1
+   }`;
+   closestProgressBar.classList.add('active');
    closestScroller.style.setProperty('--slide-index', slideIndex - 1);
+
    if (slideIndex <= 1) {
       let closestLeftArrow = e.target
          .closest('[data-scroller-container]')
@@ -304,6 +353,12 @@ function scrollRight(e) {
    let itemsPerScreen = parseInt(
       getComputedStyle(document.body).getPropertyValue('--items-per-screen')
    );
+   let closestProgressBar = e.target.closest('.wrapper').querySelector('.scroller-progress-bar');
+   closestProgressBar.textContent = `${itemsPerScreen * (slideIndex + 2)} / ${
+      closestScroller.children.length - 1
+   }`;
+   closestProgressBar.classList.add('active');
+
    let itemsLengthIndex = Math.floor(closestScroller.children.length / itemsPerScreen);
    closestScroller.style.setProperty('--slide-index', slideIndex + 1);
    if (slideIndex >= itemsLengthIndex - 1) {
@@ -311,6 +366,9 @@ function scrollRight(e) {
          .closest('[data-scroller-container]')
          .querySelector('.media-scroller-arrow.right');
       closestRightArrow.setAttribute('disabled', '');
+      closestProgressBar.textContent = `${closestScroller.children.length - 1} / ${
+         closestScroller.children.length - 1
+      }`;
       return;
    } else {
       let closestLeftArrow = e.target
@@ -320,14 +378,7 @@ function scrollRight(e) {
       e.target.removeAttribute('disabled');
    }
 }
-// media scrollers TAB focus disabling
 
-window.addEventListener('keydown', (e) => {
-   if (e.key === 'Tab' && e.target.classList.contains('changed-focus')) {
-      let nextFocusElem = document.querySelector('.toggleFilter');
-      nextFocusElem.focus();
-   }
-});
 //
 //  code for filter dropdowns
 //
@@ -599,29 +650,6 @@ goUpBtn.addEventListener('click', () => {
    window.scrollTo(0, 0);
 });
 
-const throttle = (func, delay) => {
-   let shouldWait = false;
-   let lastValue;
-   const timeoutFunc = () => {
-      if (lastValue == null) {
-         shouldWait = false;
-      } else {
-         func(...lastValue);
-         lastValue = null;
-         setTimeout(timeoutFunc, delay);
-      }
-   };
-   return (...args) => {
-      if (shouldWait) {
-         lastValue = args;
-         return;
-      }
-
-      func(...args);
-      shouldWait = true;
-      setTimeout(timeoutFunc, delay);
-   };
-};
 function getWindowScroll() {
    let verticalScroll = window.scrollY;
    if (verticalScroll > 400) {
