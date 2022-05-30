@@ -41,7 +41,7 @@
                         <div class='hero-card-text'>
                         	<h2 class='c-gradient'>Game of Thrones Prequel House Of The Dragon Release Date Set For August</h2>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nobis nam iusto facere earum, officia ad ea id? Necessitatibus ducimus ex placeat voluptatibus cumque laboriosam veritatis possimus earum quaerat impedit?</p>
-									<a href="#" class="hero-card-link">Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
+									<a href="#" class="hero-card-link" tabindex='-1'>Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
 									</a>
                         </div>
                         <img src="./image/GoT.jpg" alt="game of thrones poster" />
@@ -51,7 +51,7 @@
                   		<div class='hero-card-text'>
                   			<h2 class='c-gradient'>The season 3 of the Witcher will show us - them!</h2>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nobis nam iusto facere earum, officia ad ea id? </p>
-									<a href="#" class="hero-card-link">Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
+									<a href="#" class="hero-card-link" tabindex='-1'>Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
 									</a>
                   		</div>
                      </div>
@@ -59,7 +59,7 @@
                         <div class='hero-card-text'>
                         	<h2 class='c-gradient'>First impression of new MCU series - Moon Knight!</h2>
 									<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est culpa sequi ex, iste impedit illo repudiandae inventore consequatur consectetur nobis voluptatum corrupti recusandae libero animi! Officia iure earum a maiores obcaecati unde ut voluptatem magni excepturi beatae, quibusdam atque neque.</p>
-									<a href="#" class="hero-card-link">Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
+									<a href="#" class="hero-card-link" tabindex='-1'>Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
 									</a>
                         </div>
                         <img src="./image/TheMoonKnight.jpg" alt="The Moon Knight tv show poster" />
@@ -69,7 +69,7 @@
                         <div class='hero-card-text'>
                         	<h2 class='c-gradient'>The Boys season 3 have been announced!</h2>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem nobis nam iusto facere earum, officia ad ea id? Necessitatibus ducimus ex placeat voluptatibus cumque laboriosam veritatis possimus earum quaerat impedit?</p>
-									<a href="#" class="hero-card-link">Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
+									<a href="#" class="hero-card-link" tabindex='-1'>Learn more <span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
 									</a>
                         </div>
                      </div>
@@ -77,7 +77,7 @@
                         <div class='hero-card-text promo-slide'>
                         	<h2 class='c-gradient'>Try something new</h2>
 									<p>You can simply choose a next tv series to watch by checking our tv series list!</p>
-									<a href="#filter-section" class="hero-card-link">Choose a Show!<span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
+									<a href="#filter-section" class="hero-card-link" tabindex='-1'>Choose a Show!<span class=" c-accent"><i class="fa-solid fa-right-long link-icon"></i></span>
 									</a>
                         </div>
                      </div>
@@ -144,37 +144,57 @@
 			</div>
 			<section class="scroller-section" aria-label="top-rated-section" id="top-rated">
 				<div class="wrapper">
-					<h2 class="section-title c-gradient">Top Rated TV Shows</h2>
-					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-top-rated-scroller>
-						<button class="media-scroller-arrow c-accent left "><i class="fa-solid fa-angles-left"></i></button>
-						<template data-media-card-template aria-hidden="true">
-							<div class="media-element" data-media-element>
-								<img src="" alt="" data-img>
-								<h3 class="media-element-title c-accent" data-name></h3>
-								<div class="media-element-content">
-									<div class="media-element-content-info">
-										<p>Genre: <ul class="media-element-genre c-accent" data-genre></ul></p>
-										<p>Year: <span class="media-element-year c-accent" data-year></span></p>
-										<p>Rate: <span class="media-element-rate c-accent" data-rate></span></p>
+					<div class="scroller-section-text">
+						<h2 class="section-title c-gradient">Top Rated TV Shows</h2>
+						<div class="scroller-progress-bar c-accent">4 / 54</div>
+					</div>
+					<div class='scroller-container' data-scroller-container>
+						<button class="media-scroller-arrow left c-accent" disabled='true'><i class="fa-solid fa-angles-left"></i></button>
+						<div class="media-scroller media-element-parent" data-top-rated-scroller data-scroller>
+							<template data-media-card-template aria-hidden="true">
+								<div class="media-element" data-media-element>
+									<img src="" alt="" data-img>
+									<h3 class="media-element-title c-accent" data-name></h3>
+									<div class="media-element-content">
+										<div class="media-element-content-info">
+											<p>Genre: <ul class="media-element-genre c-accent" data-genre></ul></p>
+											<p>Year: <span class="media-element-year c-accent" data-year></span></p>
+											<p>Rate: <span class="media-element-rate c-accent" data-rate></span></p>
+										</div>
+										<button class="btn modalBtn" data-modal-btn>More info</button>
 									</div>
-									<button class="btn modalBtn">More info</button>
 								</div>
-							</div>
-						</template>
-						
-					<button class="media-scroller-arrow c-accent right "><i class="fa-solid fa-angles-right"></i></button>
-						
+							</template>
+						</div>
+						<button class="media-scroller-arrow right c-accent"><i class="fa-solid fa-angles-right"></i></button>
 					</div>
 				</div>
 			</section>
 			<section class="scroller-section" aria-label="newest TV shows" id="newest">
 				<div class="wrapper">
-					<h2 class="section-title c-gradient">Newest TV Shows</h2>
-					<div class="media-scroller snaps-inline media-element-parent" data-media-scroller data-newest-scroller>
-						<button class="media-scroller-arrow c-accent left "><i class="fa-solid fa-angles-left"></i></button>
-						
-						<button class="media-scroller-arrow c-accent right "><i class="fa-solid fa-angles-right"></i></button>
-						
+					<div class="scroller-section-text">
+						<h2 class="section-title c-gradient">Newest TV Shows</h2>
+						<div class="scroller-progress-bar c-accent">4 / 54</div>
+					</div>
+					<div class='scroller-container' data-scroller-container>
+						<button class="media-scroller-arrow left c-accent" disabled='true'><i class="fa-solid fa-angles-left"></i></button>
+						<div class="media-scroller media-element-parent" data-newest-scroller data-scroller>
+							<template data-media-card-template aria-hidden="true">
+								<div class="media-element" data-media-element>
+									<img src="" alt="" data-img>
+									<h3 class="media-element-title c-accent" data-name></h3>
+									<div class="media-element-content">
+										<div class="media-element-content-info">
+											<p>Genre: <ul class="media-element-genre c-accent" data-genre></ul></p>
+											<p>Year: <span class="media-element-year c-accent" data-year></span></p>
+											<p>Rate: <span class="media-element-rate c-accent" data-rate></span></p>
+										</div>
+										<button class="btn modalBtn">More info</button>
+									</div>
+								</div>
+							</template>
+						</div>
+						<button class="media-scroller-arrow right c-accent"><i class="fa-solid fa-angles-right"></i></button>
 					</div>
 				</div>
 			</section>
@@ -664,7 +684,6 @@
 					
 					<div class="filter-elements-container">
 						<div class="filter-elements-list media-element-parent" data-filter-elements-list>
-							<!-- если будет желание, сделать сортировку здесь -->
 							
 						</div>
 							<div class="filter-pagination">

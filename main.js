@@ -31,11 +31,11 @@ function createCards(shows, context) {
       const card = template.content.cloneNode(true).children[0];
       let img = card.querySelector('[data-img]');
       img.setAttribute('loading', 'lazy');
-      let mediaElem = card.querySelector('[media-element]');
       let name = card.querySelector('[data-name]');
       let genre = card.querySelector('[data-genre]');
       let year = card.querySelector('[data-year]');
       let rate = card.querySelector('[data-rate]');
+      let btn = card.querySelector('[data-modal-btn]');
 
       let id = show.id;
       card.dataset.id = `${id}`;
@@ -53,6 +53,9 @@ function createCards(shows, context) {
       rate.textContent = show.rating.average;
       if (show.rating.average === null) {
          rate.textContent = 'No-rating';
+      }
+      if (context.hasAttribute('data-scroller')) {
+         btn.setAttribute('tabindex', -1);
       }
       context.append(card);
    });
@@ -76,7 +79,7 @@ function getFilterShowsArr(shows) {
 
    allShowsContainer = shows;
 
-   filteredByGenre = shows.filter((show) => {
+   let filteredByGenre = shows.filter((show) => {
       if (show.genres.length < 1) {
          show.genres = ['Without Genres'];
       }
@@ -89,7 +92,7 @@ function getFilterShowsArr(shows) {
          return genresValues.includes(genreItem);
       });
    });
-   filteredByGenreAndYear = filteredByGenre.filter((show) => {
+   let filteredByGenreAndYear = filteredByGenre.filter((show) => {
       if (yearValues == 'All years') {
          return show.premiered.slice(0, 4) <= 2020;
       }
@@ -98,7 +101,7 @@ function getFilterShowsArr(shows) {
       }
       return show.premiered.slice(0, 4) == yearValues;
    });
-   filteredByGenreAndYearAndRate = filteredByGenreAndYear.filter((show) => {
+   let filteredByGenreAndYearAndRate = filteredByGenreAndYear.filter((show) => {
       if (ratingValues == 'All ratings') {
          return show.rating.average <= 10;
       }
@@ -258,10 +261,7 @@ changeSlide();
 //
 const mediaScrollerLeftBtn = document.querySelectorAll('.media-scroller-arrow.left');
 const mediaScrollerRightBtn = document.querySelectorAll('.media-scroller-arrow.right');
-const mediaScroller = document.querySelector('.media-scroller');
-
-let mediaElementWidth = 0;
-let mediaScrollerWidth = 0;
+const mediaScrollerContainer = document.querySelector('.scroller-container');
 
 window.addEventListener('resize', getMediaElementWidth);
 
@@ -277,16 +277,57 @@ mediaScrollerRightBtn.forEach((btn) => {
    btn.addEventListener('click', scrollRight);
 });
 function scrollLeft(e) {
-   e.target
-      .closest('[data-media-scroller]')
-      .scrollBy({ left: -mediaElementWidth * 2, behavior: 'smooth' });
+   let closestScroller = e.target
+      .closest('[data-scroller-container]')
+      .querySelector('.media-scroller');
+   let slideIndex = parseInt(getComputedStyle(closestScroller).getPropertyValue('--slide-index'));
+   closestScroller.style.setProperty('--slide-index', slideIndex - 1);
+   if (slideIndex <= 1) {
+      let closestLeftArrow = e.target
+         .closest('[data-scroller-container]')
+         .querySelector('.media-scroller-arrow.left');
+      closestLeftArrow.setAttribute('disabled', '');
+      return;
+   } else {
+      let closestRightArrow = e.target
+         .closest('[data-scroller-container]')
+         .querySelector('.media-scroller-arrow.right');
+      closestRightArrow.removeAttribute('disabled');
+      e.target.removeAttribute('disabled');
+   }
 }
 function scrollRight(e) {
-   e.target
-      .closest('[data-media-scroller]')
-      .scrollBy({ left: mediaElementWidth * 2, behavior: 'smooth' });
+   let closestScroller = e.target
+      .closest('[data-scroller-container]')
+      .querySelector('.media-scroller');
+   let slideIndex = parseInt(getComputedStyle(closestScroller).getPropertyValue('--slide-index'));
+   let itemsPerScreen = parseInt(
+      getComputedStyle(document.body).getPropertyValue('--items-per-screen')
+   );
+   let itemsLengthIndex = Math.floor(closestScroller.children.length / itemsPerScreen);
+   closestScroller.style.setProperty('--slide-index', slideIndex + 1);
+   if (slideIndex >= itemsLengthIndex - 1) {
+      let closestRightArrow = e.target
+         .closest('[data-scroller-container]')
+         .querySelector('.media-scroller-arrow.right');
+      closestRightArrow.setAttribute('disabled', '');
+      return;
+   } else {
+      let closestLeftArrow = e.target
+         .closest('[data-scroller-container]')
+         .querySelector('.media-scroller-arrow.left');
+      closestLeftArrow.removeAttribute('disabled');
+      e.target.removeAttribute('disabled');
+   }
 }
+// media scrollers TAB focus disabling
 
+window.addEventListener('keydown', (e) => {
+   if (e.key === 'Tab' && e.target.classList.contains('changed-focus')) {
+      let nextFocusElem = document.querySelector('.toggleFilter');
+      nextFocusElem.focus();
+   }
+});
 //
 //  code for filter dropdowns
 //
@@ -507,7 +548,6 @@ function closeModal() {
 function fillUpModalInfo(showId) {
    let showPosition = binarySearchShow(allShowsContainer, showId);
    let showData = allShowsContainer[showPosition];
-   console.log(showData);
    modalImg.src = showData.image.original;
    modalTitle.textContent = showData.name;
    modalYear.textContent = showData.premiered.slice(0, 4);
@@ -527,7 +567,6 @@ function fillUpModalInfo(showId) {
    modalDesc.innerHTML = showData.summary;
 }
 function getShowRating(showRating) {
-   console.log(showRating);
    if (showRating === null) {
       return -1;
    }
