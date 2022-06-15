@@ -349,19 +349,24 @@ function scrollRight(e) {
    let closestScroller = e.target
       .closest('[data-scroller-container]')
       .querySelector('.media-scroller');
+
    let slideIndex = parseInt(getComputedStyle(closestScroller).getPropertyValue('--slide-index'));
+   closestScroller.style.setProperty('--slide-index', slideIndex + 1);
+   slideIndex = slideIndex + 1;
+
    let itemsPerScreen = parseInt(
       getComputedStyle(document.body).getPropertyValue('--items-per-screen')
    );
    let closestProgressBar = e.target.closest('.wrapper').querySelector('.scroller-progress-bar');
-   closestProgressBar.textContent = `${itemsPerScreen * (slideIndex + 2)} / ${
+   closestProgressBar.textContent = `${itemsPerScreen * (slideIndex + 1)} / ${
       closestScroller.children.length - 1
    }`;
    closestProgressBar.classList.add('active');
 
-   let itemsLengthIndex = Math.floor(closestScroller.children.length / itemsPerScreen);
-   closestScroller.style.setProperty('--slide-index', slideIndex + 1);
-   if (slideIndex >= itemsLengthIndex - 1) {
+   let itemsLengthIndex = (closestScroller.children.length - 1) / itemsPerScreen;
+   console.log(itemsLengthIndex);
+   console.log(slideIndex);
+   if (slideIndex >= Math.ceil(itemsLengthIndex - 1) || slideIndex === itemsLengthIndex - 1) {
       let closestRightArrow = e.target
          .closest('[data-scroller-container]')
          .querySelector('.media-scroller-arrow.right');
