@@ -392,7 +392,6 @@ body.modal-opened {
 .scroller-section-text {
    display: flex;
    justify-content: space-between;
-   align-items: center;
 }
 .scroller-progress-bar {
    font-size: var(--fz-subtitles);
@@ -853,4 +852,42 @@ body.modal-opened {
 .news-card:hover .news-card-link span,
 .news-card:focus .news-card-link span {
    right: -30%;
+}
+
+@media screen and (max-width: 60rem) {
+   /* сделать адаптивный навбар */
+   :root {
+      --fz-main-title: 2rem;
+      --fz-subtitles: 1.5rem;
+      --fz-content: 1.2rem;
+
+      --items-per-screen: 3;
+   }
+   .hero-slider-card {
+      grid-template-columns: 1fr;
+   }
+}
+@media screen and (max-width: 40rem) {
+   :root {
+      --items-per-screen: 2;
+   }
+   .wrapper {
+      width: 90%;
+      margin: 0 auto;
+   }
+   .btn {
+      padding: 0.25em;
+   }
+   .filter-elements-list {
+      margin-bottom: 2rem;
+   }
+   .modal-content {
+      width: 100%;
+      height: 100%;
+   }
+}
+@media screen and (max-width: 25rem) {
+   :root {
+      --items-per-screen: 1;
+   }
 }

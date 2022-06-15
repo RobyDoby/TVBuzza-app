@@ -364,6 +364,7 @@ function scrollRight(e) {
    closestProgressBar.classList.add('active');
 
    let itemsLengthIndex = (closestScroller.children.length - 1) / itemsPerScreen;
+   console.log(itemsPerScreen);
    console.log(itemsLengthIndex);
    console.log(slideIndex);
    if (slideIndex >= Math.ceil(itemsLengthIndex - 1) || slideIndex === itemsLengthIndex - 1) {
