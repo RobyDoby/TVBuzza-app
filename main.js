@@ -36,6 +36,26 @@ const throttle = (func, delay) => {
       setTimeout(timeoutFunc, delay);
    };
 };
+// navbar burger menu code
+
+const navBurgerMenu = document.querySelector('.burger-menu');
+const closeNavBtn = document.querySelector('.close-nav-btn');
+const navList = document.querySelector('.nav-list');
+
+navList.addEventListener('click', (e) => {
+   if (e.target.classList.contains('nav-list__links')) {
+      closeNav();
+   }
+});
+navBurgerMenu.addEventListener('click', () => {
+   navList.classList.add('active');
+});
+closeNavBtn.addEventListener('click', closeNav);
+
+function closeNav() {
+   navList.classList.remove('active');
+}
+
 // fetching the data
 
 const fetchShows = async () => {
@@ -364,9 +384,7 @@ function scrollRight(e) {
    closestProgressBar.classList.add('active');
 
    let itemsLengthIndex = (closestScroller.children.length - 1) / itemsPerScreen;
-   console.log(itemsPerScreen);
-   console.log(itemsLengthIndex);
-   console.log(slideIndex);
+
    if (slideIndex >= Math.ceil(itemsLengthIndex - 1) || slideIndex === itemsLengthIndex - 1) {
       let closestRightArrow = e.target
          .closest('[data-scroller-container]')
@@ -431,14 +449,17 @@ strictModeToggler.addEventListener('click', (e) => {
       e.target.parentElement.classList.contains('strict-mode-label') ||
       e.target.parentElement.classList.contains('dropdown-label-check-icon')
    ) {
-      if (strictMode === false) {
-         strictMode = true;
-         return;
-      }
-      strictMode = false;
+      strictModeChange();
       e.stopPropagation();
    }
 });
+function strictModeChange() {
+   if (strictMode === false) {
+      strictMode = true;
+      return;
+   }
+   strictMode = false;
+}
 // apply filter settings
 applyFilterBtn.addEventListener('click', () => {
    getFilterShowsArr(allShowsContainer);
@@ -658,7 +679,7 @@ goUpBtn.addEventListener('click', () => {
 
 function getWindowScroll() {
    let verticalScroll = window.scrollY;
-   if (verticalScroll > 400) {
+   if (verticalScroll > 1000) {
       goUpBtn.classList.add('active');
       return;
    }

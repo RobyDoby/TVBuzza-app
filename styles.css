@@ -120,7 +120,7 @@ nav {
    background: hsl(var(--main-color-dark-400));
    padding: 0;
    position: relative;
-   z-index: 800;
+   z-index: 20;
 }
 .nav-container {
    display: flex;
@@ -137,10 +137,17 @@ nav {
    height: 100%;
    display: flex;
    justify-content: space-between;
+   align-items: center;
    gap: 4rem;
 }
 .nav-list > li:nth-child(1) {
    margin-left: auto;
+}
+.burger-menu,
+.close-nav-btn {
+   font-size: var(--fz-main-title);
+   display: none;
+   cursor: pointer;
 }
 .nav-list__links {
    text-decoration: none;
@@ -179,6 +186,7 @@ nav {
    width: 100%;
    min-height: max-content;
    display: flex;
+   position: relative;
    overflow: hidden;
    color: hsl(var(--main-color));
 }
@@ -263,7 +271,7 @@ main section styles
    padding: 1rem;
    opacity: 0;
    transition: opacity 300ms ease-in-out;
-   z-index: 9999;
+   z-index: 60;
    transition: 300ms ease;
 }
 .go-up-btn.active {
@@ -675,6 +683,10 @@ body.modal-opened {
 .strict-plus-icon {
    display: block;
 }
+.strictModeBtn {
+   width: 0;
+   height: 0;
+}
 .strictModeBtn:checked + label .strict-plus-icon {
    display: none;
 }
@@ -854,14 +866,46 @@ body.modal-opened {
    right: -30%;
 }
 
-@media screen and (max-width: 60rem) {
-   /* сделать адаптивный навбар */
+@media screen and (max-width: 65rem) {
    :root {
       --fz-main-title: 2rem;
       --fz-subtitles: 1.5rem;
       --fz-content: 1.2rem;
 
       --items-per-screen: 3;
+   }
+   .logo {
+      width: 60%;
+   }
+   .nav-list {
+      margin: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      transition: transform 500ms ease-in-out;
+      background-color: hsl(var(--main-color-dark-400));
+      font-size: var(--fz-main-title);
+   }
+   .nav-list.active {
+      transform: translateX(0);
+      z-index: 100;
+      transition: transform 500ms ease-in-out;
+   }
+   .nav-list > li:nth-child(1) {
+      margin: 0;
+   }
+   .burger-menu {
+      display: inline-block;
+   }
+   .close-nav-btn {
+      display: block;
+      position: absolute;
+      top: 3rem;
+      right: 6rem;
    }
    .hero-slider-card {
       grid-template-columns: 1fr;
@@ -877,6 +921,13 @@ body.modal-opened {
    }
    .btn {
       padding: 0.25em;
+   }
+   .go-up-btn {
+      padding: 0.25em 1em;
+   }
+   .close-nav-btn {
+      top: 2rem;
+      right: 2rem;
    }
    .filter-elements-list {
       margin-bottom: 2rem;
