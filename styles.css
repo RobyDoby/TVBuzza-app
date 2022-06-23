@@ -400,6 +400,7 @@ body.modal-opened {
 .scroller-section-text {
    display: flex;
    justify-content: space-between;
+   position: relative;
 }
 .scroller-progress-bar {
    font-size: var(--fz-subtitles);
@@ -963,22 +964,13 @@ body.modal-opened {
 .form-error.active {
    padding: 0.25rem;
 }
-@media screen and (max-width: 65rem) {
-   :root {
-      --fz-main-title: 2rem;
-      --fz-subtitles: 1.5rem;
-      --fz-content: 1.2rem;
-
-      --items-per-screen: 3;
-   }
-   .logo {
-      width: 60%;
-   }
+@media screen and (max-width: 75rem) {
    .nav-list {
       margin: 0;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 1rem;
       position: fixed;
       top: 0;
       left: 0;
@@ -1003,6 +995,18 @@ body.modal-opened {
       position: absolute;
       top: 3rem;
       right: 6rem;
+   }
+}
+@media screen and (max-width: 65rem) {
+   :root {
+      --fz-main-title: 2rem;
+      --fz-subtitles: 1.5rem;
+      --fz-content: 1.2rem;
+
+      --items-per-screen: 3;
+   }
+   .logo {
+      width: 60%;
    }
    .hero-slider-card {
       grid-template-columns: 1fr;
@@ -1040,5 +1044,10 @@ body.modal-opened {
 @media screen and (max-width: 25rem) {
    :root {
       --items-per-screen: 1;
+   }
+   .scroller-progress-bar {
+      position: absolute;
+      bottom: 0;
+      right: 0;
    }
 }
