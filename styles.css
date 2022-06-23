@@ -866,6 +866,103 @@ body.modal-opened {
    right: -30%;
 }
 
+/* credits section styles */
+.credits-container {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: var(--main-spacing);
+   justify-content: space-between;
+}
+.credits-desc {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+.credits-desc-link {
+   margin-bottom: auto;
+}
+.credits-desc-link a {
+   text-decoration: none;
+   color: hsl(var(--color-accent));
+}
+.social-links {
+   margin-top: var(--main-spacing);
+   font-size: 3rem;
+}
+.social-link {
+   color: hsl(var(--color-accent));
+   padding-right: var(--main-spacing);
+}
+.social-link i {
+   transition: all 300ms ease-in;
+}
+.social-link i:hover,
+.social-link i:focus {
+   transform: scale(1.1);
+   color: hsl(var(--accent-subcolor));
+}
+.contact-form form {
+   background-color: hsl(var(--color-accent));
+   padding: var(--main-spacing);
+   display: flex;
+   flex-direction: column;
+}
+.contact-form label {
+   margin-top: var(--main-spacing);
+   color: hsl(var(--main-color-dark-400));
+   font-weight: 900;
+}
+.contact-form input,
+.contact-form textarea {
+   background-color: hsl(var(--main-color-dark-400));
+   color: hsl(var(--main-color));
+   padding-inline: 1rem;
+   border: none;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+   outline: 2px solid hsl(var(--accent-subcolor));
+   outline-offset: -5px;
+}
+#contact-form-message {
+   resize: none;
+}
+.character-counter {
+   display: flex;
+   justify-content: flex-end;
+   color: hsl(var(--main-color-dark-400));
+}
+.contact-form-submit {
+   background-color: hsl(var(--accent-subcolor));
+   color: hsl(var(--main-color-dark-400));
+   border: 2px solid hsl(var(--main-color-dark-400));
+   font-weight: 900;
+   margin-top: 3rem;
+   padding-inline: var(--main-spacing);
+   align-self: center;
+   text-transform: uppercase;
+   cursor: pointer;
+   transition: transform 300ms ease-in-out;
+}
+.contact-form-submit:hover {
+   transform: scale(1.05);
+}
+.contact-form-submit:focus {
+   outline: 4px solid hsl(var(--main-color-dark-400));
+}
+.form-error {
+   width: 100%;
+   padding: 0;
+
+   font-size: 80%;
+   color: hsl(var(--main-color-dark-400));
+   background-color: hsl(var(--accent-subcolor));
+   border-radius: 0 0 5px 5px;
+}
+
+.form-error.active {
+   padding: 0.25rem;
+}
 @media screen and (max-width: 65rem) {
    :root {
       --fz-main-title: 2rem;
@@ -935,6 +1032,9 @@ body.modal-opened {
    .modal-content {
       width: 100%;
       height: 100%;
+   }
+   .credits-container {
+      grid-template-columns: 1fr;
    }
 }
 @media screen and (max-width: 25rem) {

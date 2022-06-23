@@ -685,4 +685,50 @@ function getWindowScroll() {
    }
    goUpBtn.classList.remove('active');
 }
+
+// credits section code
+// validation
+const contactForm = document.querySelector('.contact-form form');
+const contactFormInputs = document.querySelectorAll('.contact-form-input');
+
+contactFormInputs.forEach((input) => {
+   input.addEventListener('input', function (event) {
+      if (input.validity.valid) {
+         let emailError = input.nextElementSibling;
+         emailError.textContent = '';
+         emailError.className = 'form-error';
+      } else {
+         showError(input, input.name);
+      }
+   });
+});
+
+contactForm.addEventListener('submit', function (event) {
+   contactFormInputs.forEach((input) => {
+      if (!input.validity.valid) {
+         showError(input, input.name);
+         event.preventDefault();
+      } else {
+         contactForm.setAttribute('method', 'post');
+         contactForm.setAttribute('name', 'myemailform');
+         contactForm.setAttribute('action', 'form-to-email.php');
+      }
+   });
+});
+
+function showError(input, name) {
+   let emailError = input.nextElementSibling;
+   if (input.validity.valueMissing) {
+      emailError.textContent = `You need to enter the ${name}`;
+   } else if (input.validity.typeMismatch) {
+      emailError.textContent = 'Entered value needs to be an e-mail address.';
+   }
+   emailError.className = 'form-error active';
+}
+// change count of entered characters
+const contactFormTextArea = document.querySelector('#contact-form-message');
+const currentSymbolVal = document.querySelector('.current');
+contactFormTextArea.addEventListener('input', (e) => {
+   currentSymbolVal.textContent = e.target.value.length;
+});
 window.addEventListener('load', init);
