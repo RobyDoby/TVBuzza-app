@@ -731,4 +731,11 @@ const currentSymbolVal = document.querySelector('.current');
 contactFormTextArea.addEventListener('input', (e) => {
    currentSymbolVal.textContent = e.target.value.length;
 });
+// update copyright year
+function updateCopyrightYear() {
+   const copyrightYear = document.querySelector('.copyright-year');
+   let year = new Date().getFullYear();
+   copyrightYear.textContent = year;
+}
+updateCopyrightYear();
 window.addEventListener('load', init);

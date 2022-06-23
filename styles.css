@@ -91,9 +91,11 @@ h6 {
    background-color: hsl(var(--color-accent));
 }
 section {
+   background-color: hsl(var(--main-color-dark-400));
+}
+section:not(:last-of-type) {
    padding-top: 2rem;
    padding-bottom: 8rem;
-   background-color: hsl(var(--main-color-dark-400));
 }
 .btn {
    padding: 0.25em 1.5em;
@@ -960,9 +962,12 @@ body.modal-opened {
    background-color: hsl(var(--accent-subcolor));
    border-radius: 0 0 5px 5px;
 }
-
 .form-error.active {
    padding: 0.25rem;
+}
+.copyright {
+   text-align: center;
+   margin-top: 5rem;
 }
 @media screen and (max-width: 75rem) {
    .nav-list {
