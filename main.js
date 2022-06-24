@@ -752,7 +752,10 @@ contactForm.addEventListener('submit', function (event) {
       } else {
          contactForm.setAttribute('method', 'post');
          contactForm.setAttribute('name', 'myemailform');
-         contactForm.setAttribute('action', 'form-to-email.php');
+         contactForm.setAttribute(
+            'action',
+            'https://public.herotofu.com/v1/6e75d550-f3e1-11ec-95d6-ef970076a4ff'
+         );
       }
    });
 });
