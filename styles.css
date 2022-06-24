@@ -230,7 +230,6 @@ main section styles
 */
 /* about */
 .about {
-   background: hsl(var(--main-color-dark-400));
    color: hsl(var(--main-color));
    position: relative;
    background: url(./image/sectionAboutBg.jpg) no-repeat;
@@ -262,7 +261,7 @@ main section styles
 .go-up-btn-container {
    position: absolute;
    inset: 0;
-   z-index: 1;
+   z-index: 3;
    pointer-events: all;
 }
 .go-up-btn {
@@ -372,6 +371,34 @@ main section styles
    grid-column: 1 / span 2;
    max-width: 45ch;
 }
+.cast-items {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   gap: var(--main-spacing);
+   list-style: none;
+}
+.cast-item {
+   flex: 0 0 25%;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: var(--main-spacing);
+}
+.cast-item img {
+   width: 6rem;
+   height: 6rem;
+   margin-bottom: var(--main-spacing);
+   border-radius: 50%;
+   object-fit: cover;
+   object-position: top;
+}
+.cast-item h3,
+.cast-item p {
+   line-height: 1;
+}
 .modal-content-close-btn {
    position: absolute;
    top: 0;
@@ -444,7 +471,6 @@ body.modal-opened {
    flex-grow: 0;
    /* flex-shrink: 0; */
    background-color: hsl(var(--color-accent) / 0.5);
-   z-index: 10;
    border: none;
    border-radius: 0.5rem;
    cursor: pointer;
@@ -1015,6 +1041,10 @@ body.modal-opened {
    }
    .hero-slider-card {
       grid-template-columns: 1fr;
+   }
+   .modal-content {
+      width: 80%;
+      height: 80%;
    }
 }
 @media screen and (max-width: 40rem) {

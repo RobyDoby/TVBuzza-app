@@ -67,6 +67,17 @@ const fetchShows = async () => {
       console.error(err);
    }
 };
+// fetching embedded data for current show
+const fetchEmbedded = async (url) => {
+   try {
+      const response = await fetch(`${url}?embed[]=seasons&embed[]=cast`);
+      const data = await response.json();
+      // console.log(data._embedded.cast);
+      return data;
+   } catch (err) {
+      console.error(err);
+   }
+};
 
 function createCards(shows, context) {
    const template = document.querySelector('[data-media-card-template]');
@@ -577,12 +588,14 @@ let modalImg = modalContent.querySelector('img');
 let modalTitle = modalContent.querySelector('#tvTitle');
 let modalYear = modalContent.querySelector('#tvYear');
 let modalGenres = modalContent.querySelector('#tvGenres');
+let modalSeasons = modalContent.querySelector('#tvSeasons');
 let modalCountry = modalContent.querySelector('#tvCountry');
 let modalStatus = modalContent.querySelector('#tvStatus');
 let modalRating = modalContent.querySelector('.tvRating');
 let ratingActive = modalRating.querySelector('.rating-active');
 let ratingValue = modalRating.querySelector('.rating-value');
 let modalDesc = modalContent.querySelector('#tvDesc');
+let modalCast = modalContent.querySelector('.cast');
 const mediaElementsParents = document.querySelectorAll('.media-element-parent');
 const modalCloseBtn = document.querySelector('.modal-close-icon');
 
@@ -623,9 +636,12 @@ function closeModal() {
       document.documentElement.classList.remove('behavior-instant');
    }, 500);
 }
-function fillUpModalInfo(showId) {
+async function fillUpModalInfo(showId) {
    let showPosition = binarySearchShow(allShowsContainer, showId);
    let showData = allShowsContainer[showPosition];
+   let url = showData._links.self.href;
+   let embeddedData = await fetchEmbedded(url);
+
    modalImg.src = showData.image.original;
    modalTitle.textContent = showData.name;
    modalYear.textContent = showData.premiered.slice(0, 4);
@@ -634,6 +650,7 @@ function fillUpModalInfo(showId) {
    } else {
       modalGenres.textContent = showData.genres.toString().replaceAll(',', ', ');
    }
+   modalSeasons.textContent = embeddedData._embedded.seasons.length;
    modalCountry.textContent = showData.network.country.name;
    modalStatus.textContent = showData.status;
    let rate = getShowRating(showData.rating.average);
@@ -643,6 +660,29 @@ function fillUpModalInfo(showId) {
       ratingValue.textContent = rate;
    }
    modalDesc.innerHTML = showData.summary;
+   let castList = fillUpCast(embeddedData._embedded.cast);
+   modalCast.innerHTML = '';
+   modalCast.append(castList);
+}
+function fillUpCast(cast) {
+   let ul = document.createElement('ul');
+   ul.classList.add('cast-items');
+   cast.forEach((actor) => {
+      let li = document.createElement('li');
+      li.classList.add('cast-item');
+      let img = document.createElement('img');
+      img.src = actor.person.image.medium;
+      let actorName = document.createElement('h3');
+      actorName.classList.add('c-accent');
+      actorName.textContent = actor.person.name;
+      let character = document.createElement('p');
+      character.textContent = actor.character.name;
+      li.append(img);
+      li.append(actorName);
+      li.append(character);
+      ul.append(li);
+   });
+   return ul;
 }
 function getShowRating(showRating) {
    if (showRating === null) {
