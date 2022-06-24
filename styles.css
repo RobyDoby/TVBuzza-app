@@ -368,6 +368,8 @@ main section styles
 }
 .modal-content-third {
    grid-column: 1 / span 2;
+}
+#tvDesc {
    max-width: 45ch;
 }
 .cast-items {
@@ -996,6 +998,29 @@ body.modal-opened {
 .copyright {
    text-align: center;
    margin-top: 5rem;
+}
+@media screen and (min-width: 100rem) {
+   :root {
+      --fz-main-title: 6rem;
+      --fz-subtitles: 4rem;
+      --fz-content: 2.25rem;
+      --slider-padding: 6rem;
+   }
+   #tvDesc {
+      text-align: center;
+      margin: 0 auto;
+   }
+   .cast-item > img {
+      width: 10rem;
+      height: 10rem;
+   }
+   .pagination-item {
+      width: 5rem;
+      height: 5rem;
+   }
+   .social-links {
+      font-size: 6rem;
+   }
 }
 @media screen and (max-width: 75rem) {
    .nav-list {
