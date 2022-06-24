@@ -44,7 +44,6 @@ html.behavior-instant {
    scroll-behavior: auto;
 }
 body {
-   font-size: clamp(1rem, 10vw, 5rem);
    font-size: var(--fz-content);
 }
 h1,
@@ -372,18 +371,20 @@ main section styles
    max-width: 45ch;
 }
 .cast-items {
+   width: 100%;
    display: flex;
    flex-wrap: wrap;
    justify-content: space-evenly;
    gap: var(--main-spacing);
    list-style: none;
+   margin: var(--main-spacing) 0 0 0;
+   padding: 0;
 }
 .cast-item {
    flex: 0 0 25%;
    text-align: center;
    display: flex;
    flex-direction: column;
-   justify-content: center;
    align-items: center;
    margin-bottom: var(--main-spacing);
 }
@@ -391,7 +392,7 @@ main section styles
    width: 6rem;
    height: 6rem;
    margin-bottom: var(--main-spacing);
-   border-radius: 50%;
+   border-radius: 100%;
    object-fit: cover;
    object-position: top;
 }
@@ -504,6 +505,7 @@ body.modal-opened {
    position: absolute;
    inset: 0;
    opacity: 0;
+   padding: var(--main-spacing);
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -630,7 +632,7 @@ body.modal-opened {
 
 .filter-control-btns {
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+   grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
    flex-wrap: wrap;
    gap: 2em;
    padding: 1em;
@@ -836,7 +838,7 @@ body.modal-opened {
 }
 .news-container {
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr));
    gap: var(--main-spacing);
 }
 .news-card {
@@ -1046,6 +1048,15 @@ body.modal-opened {
       width: 80%;
       height: 80%;
    }
+   .btn {
+      padding: 0.25rem;
+   }
+   .go-up-btn {
+      padding: 0.25rem 1rem;
+   }
+   .media-element-content-info {
+      line-height: 1.5;
+   }
 }
 @media screen and (max-width: 40rem) {
    :root {
@@ -1079,6 +1090,20 @@ body.modal-opened {
 @media screen and (max-width: 25rem) {
    :root {
       --items-per-screen: 1;
+   }
+   .modal-content-container {
+      grid-template-columns: 1fr;
+   }
+   .modal-content-primary {
+      grid-column: 1 / span 2;
+   }
+   .modal-content-third {
+      grid-column: 1 / span 2;
+      max-width: auto;
+   }
+   .cast-item > img {
+      width: 4rem;
+      height: 4rem;
    }
    .scroller-progress-bar {
       position: absolute;

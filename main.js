@@ -621,6 +621,7 @@ function openModal(e) {
       body.style.top = `-${window.scrollY}px`;
       body.style.position = 'fixed';
 
+      modalContent.scrollTop = 0;
       modal.classList.add('visible');
    }
 }
