@@ -632,7 +632,7 @@ body.modal-opened {
 
 .filter-control-btns {
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
+   grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
    flex-wrap: wrap;
    gap: 2em;
    padding: 1em;
