@@ -18,7 +18,7 @@ TVBuzza это тренировочный проект, созданный дл�
 - валидация формы при помощи JS
 - создание медиа карточек при помощи HTML template
 
-<!-- English version -->
+*************** English version ***************
 
 TVBuzza is a training project created to improve knowledge and gain experience in creating complex websites.
 What does this project include:
