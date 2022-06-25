@@ -254,7 +254,7 @@ main section styles
    z-index: 2;
 }
 .about-desc:not(:last-of-type) {
-   margin-bottom: var(--main-spacing);
+   margin-bottom: calc(var(--main-spacing) * 2);
 }
 /* go up btn */
 .go-up-btn-container {
