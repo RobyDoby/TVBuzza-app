@@ -761,6 +761,9 @@ contactForm.addEventListener('submit', function (event) {
             'https://public.herotofu.com/v1/6e75d550-f3e1-11ec-95d6-ef970076a4ff'
          );
       }
+      contactFormInputs.forEach((input) => {
+         input.textContent = '';
+      });
    });
 });
 
