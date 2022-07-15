@@ -1010,23 +1010,6 @@ body.modal-opened {
    text-align: center;
    margin-top: 5rem;
 }
-@media screen and (min-width: 80rem) {
-   #tvDesc {
-      text-align: center;
-      margin: 0 auto;
-   }
-   .cast-item > img {
-      width: 10rem;
-      height: 10rem;
-   }
-   .pagination-item {
-      width: 5rem;
-      height: 5rem;
-   }
-   .social-links {
-      font-size: 6rem;
-   }
-}
 @media screen and (max-width: 75rem) {
    .nav-list {
       margin: 0;
