@@ -756,14 +756,15 @@ contactForm.addEventListener('submit', function (event) {
       } else {
          contactForm.setAttribute('method', 'post');
          contactForm.setAttribute('name', 'myemailform');
+         contactForm.setAttribute('target', '_blank');
          contactForm.setAttribute(
             'action',
             'https://public.herotofu.com/v1/6e75d550-f3e1-11ec-95d6-ef970076a4ff'
          );
       }
-      contactFormInputs.forEach((input) => {
-         input.textContent = '';
-      });
+   });
+   contactFormInputs.forEach((input) => {
+      input.value = '';
    });
 });
 
