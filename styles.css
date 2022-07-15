@@ -274,12 +274,15 @@ main section styles
    position: fixed;
    bottom: 1rem;
    right: 1rem;
-   background-color: hsl(var(--color-accent));
    padding: 1rem;
    opacity: 0;
    transition: opacity 300ms ease-in-out;
    z-index: 60;
    transition: 300ms ease;
+   background-color: transparent;
+   border: 1px solid hsl(var(--color-accent));
+   border-radius: var(--border-radius-main);
+   cursor: pointer;
 }
 .go-up-btn.active {
    opacity: 1;
@@ -766,11 +769,11 @@ body.modal-opened {
    font-size: var(--fz-subtitles);
 }
 /* pagination styles */
-.filter-pagination {
+/* .filter-pagination {
    position: sticky;
    bottom: 2rem;
    z-index: 9;
-}
+} */
 .pagination {
    display: flex;
    justify-content: center;
