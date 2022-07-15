@@ -14,6 +14,7 @@
 General styles
 */
 :root {
+   color-scheme: dark;
    --fz-main-title: 3rem;
    --fz-subtitles: 2rem;
    --fz-content: 1.35rem;
@@ -31,6 +32,11 @@ General styles
    --border-radius-main: 1rem;
 
    --items-per-screen: 4;
+}
+@media (prefers-color-scheme: light) {
+   :root {
+      color-scheme: light;
+   }
 }
 body,
 html {
@@ -105,6 +111,7 @@ section:not(:last-of-type) {
    cursor: pointer;
    background-color: hsl(var(--main-color));
    font-family: 'Italiano', sans-serif;
+   color: hsl(var(--main-color-dark-400));
 }
 .btn:hover,
 .btn:focus-within {
