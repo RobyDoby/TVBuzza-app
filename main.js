@@ -672,7 +672,11 @@ function fillUpCast(cast) {
       let li = document.createElement('li');
       li.classList.add('cast-item');
       let img = document.createElement('img');
-      img.src = actor.person.image.medium;
+      if (actor.person?.image?.medium === undefined) {
+         img.src = './image/Dummy-Person.png';
+      } else {
+         img.src = actor.person.image.medium;
+      }
       let actorName = document.createElement('h3');
       actorName.classList.add('c-accent');
       actorName.textContent = actor.person.name;
