@@ -603,6 +603,7 @@ body.modal-opened {
    list-style-type: none;
    background: hsl(var(--main-color-dark-200));
    border-top: 1px solid hsl(var(--color-accent));
+   font-family: 'italiano', sans-serif;
 
    overflow-y: auto;
    display: none;
@@ -1125,6 +1126,7 @@ body.modal-opened {
 @media screen and (max-width: 25rem) {
    :root {
       --items-per-screen: 1;
+      --fz-content: 1.5rem;
    }
    .modal-content-container {
       grid-template-columns: 1fr;
