@@ -266,7 +266,7 @@ main section styles
 /* go up btn */
 .go-up-btn-container {
    position: absolute;
-   inset: 0;
+   inset: 0 0 100% 0;
    z-index: 3;
    pointer-events: all;
 }
