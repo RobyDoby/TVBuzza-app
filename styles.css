@@ -33,11 +33,7 @@ General styles
 
    --items-per-screen: 4;
 }
-@media (prefers-color-scheme: light) {
-   :root {
-      color-scheme: light;
-   }
-}
+
 body,
 html {
    min-height: 100vh;
@@ -147,6 +143,7 @@ nav {
    justify-content: space-between;
    align-items: center;
    gap: 4rem;
+   text-align: center;
 }
 .nav-list > li:nth-child(1) {
    margin-left: auto;
@@ -329,6 +326,11 @@ main section styles
    transform: scale(0);
    transition: all 550ms ease-in-out;
    overflow-y: auto;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+.modal-content::-webkit-scrollbar {
+   display: none;
 }
 .modal-content-container {
    display: grid;
@@ -809,11 +811,6 @@ body.modal-opened {
    border-radius: 50%;
    transition: background-color 250ms ease;
 }
-.pagination-item:not(.hide):hover,
-.pagination-item:not(.hide):focus {
-   background-color: hsl(var(--color-accent));
-   color: hsl(var(--main-color));
-}
 .pagination-arrow:hover {
    color: hsl(var(--accent-subcolor) / 0.8);
 }
@@ -1015,6 +1012,7 @@ body.modal-opened {
 }
 @media screen and (max-width: 75rem) {
    .nav-list {
+      --transition-time: 500ms;
       margin: 0;
       flex-direction: column;
       justify-content: center;
@@ -1024,7 +1022,7 @@ body.modal-opened {
       top: 0;
       left: 0;
       transform: translateX(-100%);
-      transition: transform 500ms ease-in-out;
+      transition: transform var(--transition-time) ease-in-out;
       background-color: hsl(var(--main-color-dark-400));
       font-size: var(--fz-main-title);
    }
@@ -1102,6 +1100,29 @@ body.modal-opened {
    .credits-container {
       grid-template-columns: 1fr;
    }
+   .pagination-list {
+      justify-content: space-between;
+   }
+   .pagination-item {
+      width: auto;
+      height: auto;
+   }
+   .pagination-item:not(.hide) {
+      background-color: transparent;
+      color: hsl(var(--main-color));
+   }
+   .pagination-item:not(.hide):hover,
+   .pagination-item:not(.hide):focus {
+      background-color: transparent;
+      color: hsl(var(--color-accent));
+   }
+   .pagination-item > span {
+      font-size: 1.5rem;
+   }
+   .pagination-item > span.active {
+      background-color: transparent;
+      color: hsl(var(--color-accent));
+   }
 }
 @media screen and (max-width: 25rem) {
    :root {
@@ -1126,5 +1147,17 @@ body.modal-opened {
       position: absolute;
       bottom: 0;
       right: 0;
+   }
+}
+@media (prefers-color-scheme: light) {
+   :root {
+      color-scheme: light;
+   }
+   .dropdown-list::-webkit-scrollbar {
+      display: none;
+   }
+   .dropdown-list {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
    }
 }

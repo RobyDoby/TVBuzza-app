@@ -48,11 +48,23 @@ navList.addEventListener('click', (e) => {
    }
 });
 navBurgerMenu.addEventListener('click', () => {
+   let timeContainingElement = document.querySelector('.nav-list');
+   let timeStyles = window.getComputedStyle(timeContainingElement);
+   let transitionTime = timeStyles.getPropertyValue('--transition-time').slice(0, length - 2) - 100;
+
+   setTimeout(() => {
+      body.style.top = `-${window.scrollY}px`;
+      body.style.position = 'fixed';
+   }, transitionTime);
    navList.classList.add('active');
 });
 closeNavBtn.addEventListener('click', closeNav);
 
 function closeNav() {
+   const scrollVertical = body.style.top;
+   body.style.position = '';
+   body.style.top = '';
+   window.scrollTo(0, parseInt(scrollVertical || '0') * -1);
    navList.classList.remove('active');
 }
 
