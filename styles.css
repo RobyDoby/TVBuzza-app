@@ -1,13 +1,16 @@
 @font-face {
    font-family: 'Mummy';
+   font-display: swap;
    src: url(./fonts/Gloomy\ Mummy.ttf);
 }
 @font-face {
    font-family: 'Italiano';
+   font-display: swap;
    src: url(./fonts/Itali___.ttf);
 }
 @font-face {
    font-family: 'Rondalo';
+   font-display: swap;
    src: url(./fonts/RONDALO_.TTF);
 }
 /* 
@@ -18,6 +21,7 @@ General styles
    --fz-main-title: 3rem;
    --fz-subtitles: 2rem;
    --fz-content: 1.35rem;
+   --fz-navigation: 1rem;
 
    --main-color: 0 0% 100%;
    --main-color-dark-100: 0 0% 30%;
@@ -125,6 +129,7 @@ nav {
    padding: 0;
    position: relative;
    z-index: 20;
+   font-size: var(--fz-navigation);
 }
 .nav-container {
    display: flex;
